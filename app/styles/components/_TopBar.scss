@@ -1,8 +1,29 @@
 .page-top-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   width: 85vw;
   padding: 1rem;
 
   .button {
-    width: 80px;
+    background-color: $lighter-text;
+    width: 60px;
+    }
+
+  .active {
+    background-color: $btn-colour;
+  }
+
+  .flex-right {
+    display: flex;
+  }
+
+  #toggle-completed {
+    margin-right: 1em;
+    cursor: pointer;
+  }
+
+  .completed {
+    color: $btn-colour;
   }
 }
