@@ -1,0 +1,70 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  width: 15rem;
+  height: 100vh;
+  border-right: 1px solid $charcoal;
+  color: $menu-text-colour
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: auto;
+  padding: 0.5rem 1rem;
+  background-color: $sidebar-header-bg;
+  align-items: center;
+
+  .user-details {
+    padding-right: 4rem;
+
+    p {
+      margin: 0;
+    }
+
+    > :first-child {
+      font-size: 1.5rem;
+    }
+
+    > :last-child {
+      font-size: 0.9rem;
+      font-weight: 300;
+    }
+
+  }
+
+  .options-menu-btn:after {
+    cursor: pointer;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    content: '\2807';
+    font-size: 1.5rem;
+  }
+}
+
+.sidebar-list-container {
+  background-color: $sidebar-list-bg;
+  height: 100vh;
+
+  > :first-child {
+    padding-top: 1rem;
+  }
+}
+.sidebar-list {
+  margin: 0;
+  padding: 0.1rem 2rem;
+}
+
+.sidebar-footer {
+  padding: 0.5rem 0 0.5rem 1rem;
+  margin: 0;
+  background-color: $sidebar-footer-bg;
+
+  label {
+    color: $menu-text-colour;
+  }
+}
