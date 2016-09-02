@@ -27,7 +27,8 @@ module.exports = {
       './app/components'
     ],
     alias: {
-      applicationStyle: 'app/Styles/app.scss'
+      applicationStyle: 'app/Styles/app.scss',
+      foundationIcons: 'foundation-icons/foundation-icons.css'
     },
     extensions: ['', '.js', '.jsx']
   },
@@ -40,7 +41,8 @@ module.exports = {
         },
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/
-      }
+      },
+
     ]
   },
   sassLoader: {

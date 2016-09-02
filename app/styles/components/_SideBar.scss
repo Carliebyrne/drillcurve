@@ -3,11 +3,10 @@
   flex-direction: column;
   margin: 0;
   padding: 0;
-  position: fixed;
-  width: 15rem;
+  width: 15vw;
   height: 100vh;
-  border-right: 1px solid $charcoal;
-  color: $menu-text-colour
+  border-right: 1px solid $light-border;
+  color: $text-colour;
 }
 
 .sidebar-header {
@@ -15,7 +14,8 @@
   justify-content: space-between;
   margin-bottom: auto;
   padding: 0.5rem 1rem;
-  background-color: $sidebar-header-bg;
+  background-color: $tertiary-background;
+  border-bottom: 1px solid $light-border;
   align-items: center;
 
   .user-details {
@@ -26,11 +26,13 @@
     }
 
     > :first-child {
-      font-size: 1.5rem;
+      color: $lighter-text;
+      font-size: 1.75em;
+      font-weight: 600;
     }
 
     > :last-child {
-      font-size: 0.9rem;
+      font-size: 0.9em;
       font-weight: 300;
     }
 
@@ -42,29 +44,35 @@
     margin: 0;
     padding: 0;
     content: '\2807';
-    font-size: 1.5rem;
+    font-size: 1.5em;
   }
 }
 
 .sidebar-list-container {
-  background-color: $sidebar-list-bg;
+  background-color: $secondary-background;
   height: 100vh;
 
   > :first-child {
-    padding-top: 1rem;
+    margin-top: 1rem;
   }
 }
 .sidebar-list {
   margin: 0;
   padding: 0.1rem 2rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $btn-colour;
+    transition: background 0.3s ease;
+  }
 }
 
 .sidebar-footer {
   padding: 0.5rem 0 0.5rem 1rem;
   margin: 0;
-  background-color: $sidebar-footer-bg;
+  background-color: $secondary-background;
 
   label {
-    color: $menu-text-colour;
+    color: $text-colour;
   }
 }

@@ -1,25 +1,12 @@
-var React = require('react');
+import React from 'react';
 
-var SideBarHeader = require('SideBarHeader');
-var SideBarList = require('SideBarList');
-var SideBarFooter = require('SideBarFooter');
+import SideBarHeader from 'SideBarHeader';
+import SideBarList from 'SideBarList';
+import SideBarFooter from 'SideBarFooter';
 
 var SideBar = React.createClass({
-  getInitialState: function () {
-    return {
-      userName: 'Jacob',
-      company: 'JC Consulting',
-      drillholes: [
-        {id: 'DDH001'},
-        {id: 'DDH002'},
-        {id: 'DDH003'},
-        {id: 'DDH004'}
-      ],
-      showCompleted: true
-    }
-  },
   render: function () {
-    var {userName, company, drillholes, showCompleted} = this.state;
+    var {userName, company, drillholes, showCompleted} = this.props;
 
     var renderDrillholes = () => {
       return drillholes.map((drillhole) => {
