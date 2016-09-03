@@ -11,10 +11,22 @@ var Main = React.createClass({
       company: 'JC Consulting',
       pageName: 'Drillhole View',
       drillholes: [
-        {id: 'DDH001'},
-        {id: 'DDH002'},
-        {id: 'DDH003'},
-        {id: 'DDH004'}
+        {
+          id: 'DDH001',
+          active: true
+        },
+        {
+          id: 'DDH002',
+          active: false
+        },
+        {
+          id: 'DDH003',
+          active: false
+        },
+        {
+          id: 'DDH004',
+          active: false
+        }
       ],
       showCompleted: true
     }

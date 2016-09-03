@@ -28,7 +28,8 @@ module.exports = {
     ],
     alias: {
       applicationStyle: 'app/Styles/app.scss',
-      foundationIcons: '../node_modules/foundation-icons/foundation-icons.css'
+      foundationIcons: '../node_modules/foundation-icons/foundation-icons.css',
+      plotly: 'app/externals/plotly.jsx'
     },
     extensions: ['', '.js', '.jsx']
   },
@@ -41,6 +42,10 @@ module.exports = {
         },
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/
+      },
+      {
+        test: /node_modules/,
+        loader: 'ify'
       },
       {
         test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,

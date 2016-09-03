@@ -7,7 +7,7 @@ var SideBar = React.createClass({
     return (
       <div className="sidebar-footer">
         <form>
-          <label>
+          <label className="show-completed">
           <input type="checkbox" checked={showCompleted} />
           Show Completed</label>
         </form>

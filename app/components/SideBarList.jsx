@@ -2,10 +2,11 @@ import React from 'react';
 
 var SideBarList = React.createClass({
   render: function () {
-    var {id} = this.props;
+    var {id, active} = this.props;
+    var activeClass = active ? 'sidebar-list active' : 'sidebar-list';
 
     return (
-      <div className="sidebar-list">
+      <div className={activeClass}>
         {id}
       </div>
     )
