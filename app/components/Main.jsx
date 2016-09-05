@@ -51,6 +51,9 @@ var Main = React.createClass({
       showCompleted: true
     }
   },
+  handleViewChange: function (pageName) {
+    this.setState({pageName});
+  },
   render: function () {
     var {userName, company, pageName, drillholes, showCompleted} = this.state;
     var drillhole = drillholes.filter((el) => {
@@ -63,8 +66,8 @@ var Main = React.createClass({
       <div className="wrapper">
         <SideBar userName={userName} company={company} drillholes={drillholes} showCompleted={showCompleted}/>
         <div className="main-page">
-          <TopBar pageName={pageName}/>
-          <PageContent drillhole={drillhole}/>
+          <TopBar id={drillhole.id}/>
+          <PageContent pageName={pageName} drillhole={drillhole}/>
         </div>
       </div>
     )
