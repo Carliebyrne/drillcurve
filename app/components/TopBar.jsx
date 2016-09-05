@@ -1,9 +1,6 @@
 import React from 'react';
 
 var TopBar = React.createClass({
-  onClickHandler: function (btnName) {
-
-  },
   render: function () {
     var {id} = this.props;
 
