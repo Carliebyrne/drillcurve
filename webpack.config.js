@@ -27,7 +27,7 @@ module.exports = {
       './app/components'
     ],
     alias: {
-      applicationStyle: 'app/Styles/app.scss',
+      applicationStyle: 'app/styles/app.scss',
       foundationIcons: '../node_modules/foundation-icons/foundation-icons.css',
       plotly: 'app/externals/plotly.jsx'
     },
