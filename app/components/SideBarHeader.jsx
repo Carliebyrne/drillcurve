@@ -1,6 +1,6 @@
 import React from 'react';
 
-var SideBarHeader = React.createClass({
+export var SideBarHeader = React.createClass({
   render: function () {
     var {userName, company} = this.props;
 
@@ -17,4 +17,11 @@ var SideBarHeader = React.createClass({
   }
 });
 
-module.exports = SideBarHeader;
+export default connect(
+  (state) => {
+    return {
+      userName: state.showCompleted,
+      company: state.company
+    }
+  }
+)(SideBarHeader);

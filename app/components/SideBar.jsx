@@ -4,9 +4,9 @@ import SideBarHeader from 'SideBarHeader';
 import SideBarList from 'SideBarList';
 import SideBarFooter from 'SideBarFooter';
 
-var SideBar = React.createClass({
+export var SideBar = React.createClass({
   render: function () {
-    var {userName, company, drillholes, showCompleted} = this.props;
+    var {dispatch, drillholes} = this.props;
 
     var renderDrillholes = () => {
       return drillholes.map((drillhole) => {
@@ -19,17 +19,23 @@ var SideBar = React.createClass({
     return (
       <div className="sidebar">
         <div>
-          <SideBarHeader userName={userName} company={company} />
+          <SideBarHeader/>
         </div>
         <div className="sidebar-list-container">
           {renderDrillholes()}
         </div>
         <div>
-          <SideBarFooter showCompleted={showCompleted} />
+          <SideBarFooter/>
         </div>
       </div>
     )
   }
 });
 
-module.exports = SideBar;
+export default connect(
+  (state) => {
+    return {
+      drillholes: state.drillholes
+    }
+  }
+)(SideBar);

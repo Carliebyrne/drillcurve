@@ -1,7 +1,7 @@
 var redux = require('redux');
 var {showCompletedReducer, holeReducer} = require('reducers');
 
-export var configure = (initialState = {}) => {
+export var configure = (initialState = {}) => {  
   var reducer = redux.combineReducers({
     showCompleted: showCompletedReducer,
     drillholes: holeReducer
