@@ -4,7 +4,6 @@ var path = require('path');
 module.exports = {
   entry: [
     'script!jquery/dist/jquery.min.js',
-    'script!foundation-sites/dist/foundation.min.js',
     './app/app.jsx'
   ],
   externals: {
@@ -28,8 +27,10 @@ module.exports = {
     ],
     alias: {
       applicationStyle: 'app/styles/app.scss',
-      foundationIcons: '../node_modules/foundation-icons/foundation-icons.css',
-      plotly: 'app/externals/plotly.jsx'
+      plotly: 'app/externals/plotly.jsx',
+      actions: 'app/actions/actions.jsx',
+      reducers: 'app/reducers/reducers.jsx',
+      configureStore: 'app/store/configureStore.jsx' 
     },
     extensions: ['', '.js', '.jsx']
   },

@@ -1,14 +1,16 @@
 import React from 'react';
+var {connect} = require('react-redux');
+var actions = require('actions');
 
-var SideBar = React.createClass({
+export var SideBarFooter = React.createClass({
   render: function () {
-    var {showCompleted} = this.props;
+    var {dispatch, showCompleted} = this.props;
 
     return (
       <div className="sidebar-footer">
         <form>
           <label className="show-completed">
-          <input type="checkbox" checked={showCompleted} />
+          <input type="checkbox" checked={showCompleted} onChange={() => dispatch(actions.toggleShowCompleted())}/>
           Show Completed</label>
         </form>
       </div>
@@ -16,4 +18,10 @@ var SideBar = React.createClass({
   }
 });
 
-module.exports = SideBar;
+export default connect(
+  (state) => {
+    return {
+      showCompleted: state.showCompleted
+    }
+  }
+)(SideBarFooter)
