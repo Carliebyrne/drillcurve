@@ -5,31 +5,31 @@
   width: 85vw;
   padding: 1rem;
 
+  h1 {
+    margin: 0;
+  }
+
   .topbar-title {
     font-weight: 300;
   }
 
-  .button {
-    font-size: 1.5em;
-    font-weight: 600;
-    background-color: $lighter-text;
-    width: 60px;
-    }
+  .hole-completed {
+    margin: 0;
+    padding: 0.5em 1em;
+    color: #777;
+    cursor: pointer;
 
-  .active {
+    input {
+      margin-right: 0.4em;
+    }
+  }
+
+  .active-link {
+    color: $btn-text-colour;
     background-color: $btn-colour;
   }
 
   .flex-right {
     display: flex;
-  }
-
-  #toggle-completed {
-    margin-right: 1em;
-    cursor: pointer;
-  }
-
-  .completed {
-    color: $btn-colour;
   }
 }

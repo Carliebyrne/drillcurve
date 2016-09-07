@@ -1,5 +1,5 @@
 import uuid from 'node-uuid';
-//import moment from 'moment';
+import moment from 'moment';
 
 export var holeReducer = (state = [], action) => {
   switch (action.type) {
@@ -38,6 +38,33 @@ export var holeReducer = (state = [], action) => {
           return drillhole;
         }
       })
+    case 'CHANGE_ACTIVE_HOLE':
+      return state.map((drillhole) => {
+        if (drillhole.id === action.id) {
+          return {
+            ...drillhole,
+            active: true
+          };
+        } else {
+          return {
+            ...drillhole,
+            active: false
+          };
+        }
+      });
+    case 'TOGGLE_COMPLETED':
+      return state.map((drillhole) => {
+        if (drillhole.id === action.id) {
+          var nextCompleted = !drillhole.completed;
+          return {
+            ...drillhole,
+            completed: nextCompleted,
+            completedAt: nextCompleted ? moment().unix() : undefined
+          }
+        } else {
+          return drillhole;
+        }
+      });
     default:
       return state;
   }
@@ -50,4 +77,12 @@ export var showCompletedReducer = (state = false, action) => {
     default:
       return state;
   }
+};
+
+export var userNameReducer = (state = 'guest', action) => {
+  return state;
+};
+
+export var companyReducer = (state = 'Carvell Labs', action) => {
+  return state;
 };

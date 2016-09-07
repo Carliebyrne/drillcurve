@@ -13,6 +13,7 @@
     "axios": "^0.13.1",
     "express": "^4.13.4",
     "font-awesome": "^4.6.3",
+    "moment": "^2.14.1",
     "plotly.js": "^1.16.3",
     "purecss": "^0.6.0",
     "react": "^0.14.7",

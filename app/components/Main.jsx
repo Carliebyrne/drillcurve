@@ -1,28 +1,16 @@
-var React = require('react');
+import React from 'react';
 
-var SideBar = require('SideBar');
-var PageContent = require('PageContent');
-var TopBar = require('TopBar');
+import SideBar from 'SideBar';
 
-var Main = React.createClass({
-  render: function () {
-    var {userName, company, pageName, drillholes, showCompleted} = this.state;
-    var drillhole = drillholes.filter((el) => {
-      if (el.active === true) {
-        return true;
-      }
-    })[0];
-
+var Main = (props) => {
     return (
       <div className="wrapper">
-        <SideBar userName={userName} company={company} drillholes={drillholes}/>
+        <SideBar/>
         <div className="main-page">
-          <TopBar id={drillhole.id} onSetView={this.handleViewChange}/>
-          <PageContent pageName={pageName} drillhole={drillhole}/>
+          {props.children}
         </div>
       </div>
     )
-  }
-});
+};
 
 module.exports = Main;

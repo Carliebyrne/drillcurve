@@ -1,20 +1,38 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {Link, IndexLink} from 'react-router';
 
-var TopBar = React.createClass({
+var actions = require('actions');
+
+export var TopBar = React.createClass({
   render: function () {
-    var {id} = this.props;
+    var {dispatch, drillholes} = this.props;
+    var drillhole = drillholes.filter((el) => {
+      if (el.active === true) {
+        return true;
+      }
+    })[0];
 
     return (
       <div className="page-top-bar">
         <div className="topbar-title">
-          <h3>{id}</h3>
+          <h1>{drillhole.id}</h1>
         </div>
         <div className="flex-right">
-          <i className="fa fa-check-circle fa-2x completed" id="toggle-completed"></i>
-          <div className="small button-group">
-            <a className="button active">Trace</a>
-            <a className="button">Data</a>
+
+            <div className="pure-menu pure-menu-horizontal">
+              <ul className="pure-menu-list">
+                  <li className="pure-menu-item">
+                    <label className="hole-completed">
+                      <input type="checkbox" checked={drillhole.Completed} onChange={() => dispatch(actions.toggleCompleted(drillhole.id))}/>
+                      Completed
+                    </label>
+                  </li>
+                  <li className="pure-menu-item"><IndexLink to="/" activeClassName="active-link" className="pure-menu-link">Trace</IndexLink></li>
+                  <li className="pure-menu-item"><Link to="/data" activeClassName="active-link" className="pure-menu-link">Data</Link></li>
+              </ul>
           </div>
+
         </div>
       </div>
     )
@@ -22,4 +40,10 @@ var TopBar = React.createClass({
 
 });
 
-module.exports = TopBar;
+export default connect(
+  (state) => {
+    return {
+      drillholes: state.drillholes
+    }
+  }
+)(TopBar);

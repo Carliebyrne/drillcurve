@@ -1,12 +1,18 @@
 var React = require('react');
+var {connect} = require('react-redux');
 
-var PlotInfo = React.createClass({
+export var PlotInfo = React.createClass({
   render: function () {
-    var {drillhole} = this.props;
+    var {drillholes} = this.props;
+    var drillhole = drillholes.filter((el) => {
+      if (el.active === true) {
+        return true;
+      }
+    })[0];
 
     return (
       <div className="plot-info">
-        <h5>Drillhole Information</h5>
+        <h3>Drillhole Information</h3>
         <p>The drillhole is {drillhole.mFromTarget}m from the target.</p>
         <p>Last survey had a dip of {drillhole.lastSurvey.dip} and an azimuth of {drillhole.lastSurvey.azi}</p>
       </div>
@@ -14,4 +20,10 @@ var PlotInfo = React.createClass({
   }
 });
 
-module.exports = PlotInfo;
+export default connect(
+  (state) => {
+    return {
+      drillholes: state.drillholes
+    }
+  }
+)(PlotInfo);

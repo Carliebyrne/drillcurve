@@ -75,9 +75,15 @@
 }
 
 .sidebar-footer {
-  padding: 0.5rem 0 0.5rem 1rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
   margin: 0;
   background-color: $secondary-background;
+  text-align: center;
+  margin-bottom: 1rem;
+
+  input {
+    margin-right: 0.4em;
+  }
 
   label {
     color: $text-colour;

@@ -1,4 +1,5 @@
 import React from 'react';
+var {connect} = require('react-redux');
 
 export var SideBarHeader = React.createClass({
   render: function () {
@@ -20,7 +21,7 @@ export var SideBarHeader = React.createClass({
 export default connect(
   (state) => {
     return {
-      userName: state.showCompleted,
+      userName: state.userName,
       company: state.company
     }
   }

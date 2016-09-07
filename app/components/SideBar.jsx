@@ -1,8 +1,9 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 import SideBarHeader from 'SideBarHeader';
-import SideBarList from 'SideBarList';
 import SideBarFooter from 'SideBarFooter';
+var actions = require('actions');
 
 export var SideBar = React.createClass({
   render: function () {
@@ -10,8 +11,12 @@ export var SideBar = React.createClass({
 
     var renderDrillholes = () => {
       return drillholes.map((drillhole) => {
+        var activeClass = drillhole.active ? 'sidebar-list active' : 'sidebar-list';
+        var id = drillhole.id;
         return (
-          <SideBarList key={drillhole.id} {...drillhole}/>
+          <div className={activeClass} key={id} onClick={() => dispatch(actions.changeActiveHole(id))}>
+            {id}
+          </div>
         )
       });
     };
