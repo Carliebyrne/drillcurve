@@ -7,11 +7,22 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-}
 
-.main-page {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-content: center;
+  .nav-wrapper {
+    flex: 0 0 250px;
+  }
+
+  .main-page {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: center;
+
+    .page-content {
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+    }
+  }
 }

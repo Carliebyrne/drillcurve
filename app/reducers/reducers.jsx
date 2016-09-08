@@ -34,32 +34,91 @@ export var holeReducer = (state = [], action) => {
       return state.map((drillhole) => {
         if (drillhole.id === action.id) {
           var newSurvey = action.survey;
-          return {
-            ...drillhole,
-            surveys: {
-              ...surveys,
-              newSurvey
-            }
-          };
+          var survey = drillhole.planSurvey;
+          var surveyActual = drillhole.actualSurvey;
+          switch (action.option) {
+            case 'plan':
+              return {
+                ...drillhole,
+                planSurvey: [
+                  ...survey,
+                  newSurvey
+                ]
+              };
+              break;
+            case 'actual':
+              return {
+                ...drillhole,
+                actualSurvey: [
+                  ...surveyActual,
+                  newSurvey
+                ]
+              };
+              break;
+          }
         } else {
           return drillhole;
         }
       });
-
-    case 'REMOVE_SURVEY':
+    case 'ADD_SERIES':
       return state.map((drillhole) => {
         if (drillhole.id === action.id) {
-          drillhole.surveys.filter((survey) => {
-            if (survey.depth === action.depth) {
-              return false;
-            } else {
-              return true;
-            }
-          });
+          var newSurvey = action.surveys;
+          var survey = newSurvey.concat(drillhole.planSurvey);
+          var surveyActual = newSurvey.concat(drillhole.actualSurvey);
+          switch (action.option) {
+            case 'plan':
+              return {
+                ...drillhole,
+                planSurvey: survey
+              };
+              break;
+            case 'actual':
+              return {
+                ...drillhole,
+                actualSurvey: surveyActual
+              };
+              break;
+          }
         } else {
           return drillhole;
         }
-      })
+      });
+    case 'DELETE_SURVEY':
+      return state.map((drillhole) => {
+        if (drillhole.id === action.id) {
+          switch (action.option) {
+            case 'plan':
+              var newSurveys = drillhole.planSurvey.filter((survey) => {
+                if (survey.depth === action.depth) {
+                  return false;
+                } else {
+                  return true;
+                }
+              });
+              return {
+                ...drillhole,
+                planSurvey: newSurveys
+              }
+              break;
+            case 'actual':
+              var newSurveys = drillhole.actualSurvey.filter((survey) => {
+                if (survey.depth === action.depth) {
+                  return false;
+                } else {
+                  return true;
+                }
+              });
+              return {
+                ...drillhole,
+                actualSurvey: newSurveys
+              }
+              break;
+          }
+        } else {
+          return drillhole;
+        }
+      });
     case 'CHANGE_ACTIVE_HOLE':
       return state.map((drillhole) => {
         if (drillhole.id === action.id) {

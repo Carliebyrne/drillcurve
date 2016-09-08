@@ -71,6 +71,82 @@ describe('Reducers', () => {
       expect(res[0].collar).toEqual(action.collar);
       expect(res[0].target).toEqual(action.target);
     });
+
+    it('Should add a survey to the specified holeid', () => {
+      var drillholes = [{
+        id: 'DDH001',
+        planSurvey: [],
+        actualSurvey: []
+      }];
+      var actionPlan = {
+        type: 'ADD_SURVEY',
+        id: 'DDH001',
+        survey: {depth: 0, dip: 0, azi: 0},
+        option: 'plan'
+      };
+      var actionActual = {
+        type: 'ADD_SURVEY',
+        id: 'DDH001',
+        survey: {depth: 0, dip: 0, azi: 0, temp: 0, mag: 0},
+        option: 'actual'
+      };
+
+      var res = reducers.holeReducer(drillholes, actionPlan)
+      expect(res[0].planSurvey).toEqual([{depth: 0, dip: 0, azi: 0}]);
+      var res = reducers.holeReducer(drillholes, actionActual)
+      expect(res[0].actualSurvey).toEqual([{depth: 0, dip: 0, azi: 0, temp: 0, mag: 0}]);
+    });
+
+    it('Should add a series of surveys to the specified holeid', () => {
+      var surveys = [{depth: 0, dip: 0, azi: 0}, {depth: 30, dip: 0, azi: 0}];
+      var drillholes = [{
+        id: 'DDH001',
+        planSurvey: [],
+        actualSurvey: []
+      }];
+      var actionPlan = {
+        type: 'ADD_SERIES',
+        id: 'DDH001',
+        surveys: surveys,
+        option: 'plan'
+      };
+      var actionActual = {
+        type: 'ADD_SERIES',
+        id: 'DDH001',
+        surveys: surveys,
+        option: 'actual'
+      };
+
+      var res = reducers.holeReducer(drillholes, actionPlan)
+      expect(res[0].planSurvey).toEqual(surveys);
+      var res = reducers.holeReducer(drillholes, actionActual)
+      expect(res[0].actualSurvey).toEqual(surveys);
+    });
+
+    it('Should delete the survey of the specified holeid', () => {
+      var drillholes = [{
+        id: 'DDH001',
+        planSurvey: [{depth: 0, dip: 0, azi: 0, azi: 0, temp: 0, mag: 0}],
+        actualSurvey: [{depth: 30, dip: 0, azi: 0, azi: 0, temp: 0, mag: 0}]
+      }];
+      var actionPlan = {
+        type: 'DELETE_SURVEY',
+        id: 'DDH001',
+        depth: 0,
+        option: 'plan'
+      };
+      var actionActual = {
+        type: 'DELETE_SURVEY',
+        id: 'DDH001',
+        depth: 30,
+        option: 'actual'
+      };
+
+      var res = reducers.holeReducer(drillholes, actionPlan)
+      expect(res[0].planSurvey).toEqual([]);
+      var res = reducers.holeReducer(drillholes, actionActual)
+      expect(res[0].actualSurvey).toEqual([]);
+    });
   });
 
   describe('showCompletedReducer', () => {

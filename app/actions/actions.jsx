@@ -28,17 +28,30 @@ export var changeActiveHole = (id) => {
   }
 };
 
-export var addSurvey = (id, survey) => {
+export var addSurvey = (id, survey, option) => {
   return {
     type: 'ADD_SURVEY',
-    survey
+    id,
+    survey,
+    option
   }
 };
 
-export var removeSurvey = (id, depth) => {
+export var addSeries = (id, surveys, option) => {
   return {
-    type: 'REMOVE_SURVEY',
-    depth
+    type: 'ADD_SERIES',
+    id,
+    surveys,
+    option
+  }
+};
+
+export var deleteSurvey = (id, depth, option) => {
+  return {
+    type: 'DELETE_SURVEY',
+    id,
+    depth,
+    option
   }
 };
 

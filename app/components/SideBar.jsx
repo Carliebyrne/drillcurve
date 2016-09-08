@@ -43,11 +43,10 @@ export var SideBar = React.createClass({
         completed: false,
         completedAt: undefined,
         mFromTarget: undefined,
-        lastSurvey: {dip: undefined, azi: undefined},
         collar: {x: 0, y: 0, z: 0},
         target: {x: 0, y: 0, z: 0, radius: 0},
-        planSurvey: [{dip: 0, azi: 0}],
-        actualSurvey: [{dip: 0, azi: 0}],
+        planSurvey: [{depth: 0, dip: 0, azi: 0}],
+        actualSurvey: [{depth: 0, dip: 0, temp: 0, mag: 0}],
         planPoints: {x: [0], y: [0], z: [0]},
         actualPoints: {x: [0], y: [0], z: [0]}
       }];

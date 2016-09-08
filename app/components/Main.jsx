@@ -4,7 +4,9 @@ import SideBar from 'SideBar';
 var Main = (props) => {
     return (
       <div className="wrapper">
-        <SideBar/>
+        <div className="nav-wrapper">
+          <SideBar/>
+        </div>        
         <div className="main-page">
           {props.children}
         </div>

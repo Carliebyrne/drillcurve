@@ -20,7 +20,7 @@ export var PlotInfo = React.createClass({
       <div className="plot-info">
         <h3>Drillhole Information</h3>
         <p>The drillhole is {drillhole.mFromTarget}m from the target.</p>
-        <p>Last survey had a dip of {drillhole.lastSurvey.dip} and an azimuth of {drillhole.lastSurvey.azi}</p>
+        <p>Last survey had a dip of INSERTHERE and an azimuth of INSERTHERE</p>
       </div>
     )
   }

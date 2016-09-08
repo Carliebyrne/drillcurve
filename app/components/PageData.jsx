@@ -1,17 +1,18 @@
 import React from 'react';
-import {browserHistory} from 'react-router';
 
 import TopBar from 'TopBar';
+import PageDataPlan from 'PageDataPlan';
+import PageDataActual from 'PageDataActual';
 
-var PageData = React.createClass({
+export var PageData = React.createClass({
   render: function () {
     return (
       <div className="page-content">
-        <TopBar/>
-        <p>This will be the data page</p>
+        <TopBar dataPage="true"/>
+        <PageDataPlan/>
       </div>
     )
   }
 });
 
-module.exports = PageData;
+export default (PageData);

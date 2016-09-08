@@ -5,9 +5,11 @@ import {Route, Router, IndexRoute, browserHistory} from 'react-router';
 
 import Main from 'Main';
 import PageTrace from 'PageTrace';
-var PageData = require('PageData');
+import PageData from 'PageData';
 import PageEdit from 'PageEdit';
 import PageBlank from 'PageBlank';
+import PageDataPlan from 'PageDataPlan';
+import PageDataActual from 'PageDataActual';
 
 var actions = require('actions');
 var demoState = require('DemoState');
@@ -30,6 +32,8 @@ ReactDOM.render(
     <Router history={browserHistory}>
       <Route path="/" component={Main}>
         <Route path="data" component={PageData}/>
+          <Route path="plan" component={PageDataPlan}/>
+          <Route path="actual" component={PageDataActual}/>
         <Route path="edit" component={PageEdit}/>
         <Route path="blank" component={PageBlank}/>
         <IndexRoute component={PageTrace}/>
