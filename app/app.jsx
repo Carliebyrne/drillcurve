@@ -1,55 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import {Route, Router, IndexRoute, hashHistory} from 'react-router';
+import {Route, Router, IndexRoute, browserHistory} from 'react-router';
 
-var Main = require('Main');
-var PageTrace = require('PageTrace');
+import Main from 'Main';
+import PageTrace from 'PageTrace';
 var PageData = require('PageData');
+import PageEdit from 'PageEdit';
+import PageBlank from 'PageBlank';
+
 var actions = require('actions');
+var demoState = require('DemoState');
 
-var initialState = {
-  userName: 'Jacob',
-  company: 'Carvell Labs',
-  showCompleted: true,
-  drillholes: [
-    {
-      id: 'DDH001',
-      active: true,
-      completed: false,
-      completedAt: undefined,
-      mFromTarget: 10,
-      lastSurvey: {
-        dip: -20,
-        azi: 230
-      }
-    },
-    {
-      id: 'DDH002',
-      active: false,
-      completed: false,
-      completedAt: undefined,
-      mFromTarget: 15,
-      lastSurvey: {
-        dip: -50,
-        azi: 100
-      }
-    },
-    {
-      id: 'DDH003',
-      active: false,
-      completed: true,
-      completedAt: 500,
-      mFromTarget: 8,
-      lastSurvey: {
-        dip: -15,
-        azi: 290
-      }
-    }
-  ],
-};
-
-var store = require('configureStore').configure(initialState);
+var store = require('configureStore').configure(demoState.initialState);
 
 console.log(store.getState());
 store.subscribe(() => {
@@ -64,9 +27,11 @@ require('style!css!sass!applicationStyle');
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={hashHistory}>
+    <Router history={browserHistory}>
       <Route path="/" component={Main}>
         <Route path="data" component={PageData}/>
+        <Route path="edit" component={PageEdit}/>
+        <Route path="blank" component={PageBlank}/>
         <IndexRoute component={PageTrace}/>
       </Route>
     </Router>

@@ -1,0 +1,22 @@
+.new-hole-form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.form-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.btn-warning {
+  color: $secondary-text-colour;
+  background: $btn-warning-colour;
+}
+
+.btn-primary {
+  color: $secondary-text-colour;
+  background: $btn-colour;
+}

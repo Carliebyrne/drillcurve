@@ -1,10 +1,17 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link, IndexLink} from 'react-router';
+import {browserHistory} from 'react-router';
 
 var actions = require('actions');
 
 export var TopBar = React.createClass({
+  componentWillMount: function () {
+    var {drillholes} = this.props;
+    if (drillholes.length === 0) {
+      browserHistory.push('/blank');
+    }
+  },
   render: function () {
     var {dispatch, drillholes} = this.props;
     var drillhole = drillholes.filter((el) => {
@@ -30,6 +37,7 @@ export var TopBar = React.createClass({
                   </li>
                   <li className="pure-menu-item"><IndexLink to="/" activeClassName="active-link" className="pure-menu-link">Trace</IndexLink></li>
                   <li className="pure-menu-item"><Link to="/data" activeClassName="active-link" className="pure-menu-link">Data</Link></li>
+                  <li className="pure-menu-item"><Link to="/edit" activeClassName="active-link" className="pure-menu-link">Edit</Link></li>
               </ul>
           </div>
 

@@ -5,6 +5,22 @@ export var addHole = (drillhole) => {
     }
 };
 
+export var deleteHole = (id) => {
+    return {
+      type: 'DELETE_HOLE',
+      id
+    }
+};
+
+export var updateHoleCoords = (id, collar, target) => {
+  return {
+    type: 'UPDATE_HOLE_COORDS',
+    id,
+    collar,
+    target
+  }
+};
+
 export var changeActiveHole = (id) => {
   return {
     type: 'CHANGE_ACTIVE_HOLE',

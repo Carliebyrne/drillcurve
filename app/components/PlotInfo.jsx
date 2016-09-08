@@ -2,6 +2,12 @@ var React = require('react');
 var {connect} = require('react-redux');
 
 export var PlotInfo = React.createClass({
+  componentWillMount: function () {
+    var {drillholes} = this.props;
+    if (typeof drillholes === 'undefined' || drillholes.length === 0) {
+      browserHistory.push('/blank');
+    }
+  },
   render: function () {
     var {drillholes} = this.props;
     var drillhole = drillholes.filter((el) => {

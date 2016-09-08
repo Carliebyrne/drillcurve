@@ -1,5 +1,4 @@
 import React from 'react';
-
 import SideBar from 'SideBar';
 
 var Main = (props) => {
@@ -13,4 +12,4 @@ var Main = (props) => {
     )
 };
 
-module.exports = Main;
+export default Main;

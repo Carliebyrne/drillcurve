@@ -1,4 +1,6 @@
 .page-content {
+  display: flex;
+  flex-direction: column;
   padding: 1rem;
   flex-grow: 10;
 }

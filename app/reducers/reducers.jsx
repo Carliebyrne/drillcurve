@@ -8,6 +8,28 @@ export var holeReducer = (state = [], action) => {
         ...state,
         ...action.drillhole
       ];
+    case 'DELETE_HOLE':
+      return state.filter((drillhole) => {
+        if (drillhole.id === action.id) {
+          return false;
+        } else {
+          return true;
+        }
+      });
+    case 'UPDATE_HOLE_COORDS':
+      return state.map((drillhole) => {
+        if (drillhole.id === action.id) {
+          var newCollar = action.collar;
+          var newTarget = action.target;
+          return {
+            ...drillhole,
+            collar: newCollar,
+            target: newTarget
+          };
+        } else {
+          return drillhole;
+        }
+      });
     case 'ADD_SURVEY':
       return state.map((drillhole) => {
         if (drillhole.id === action.id) {
