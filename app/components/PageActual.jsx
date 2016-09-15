@@ -1,10 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
+import TopBar from 'TopBar';
 import ActualSurveyForm from 'ActualSurveyForm';
 var actions = require('actions');
 
-export var PageDataActual = React.createClass({
+export var PageActual = React.createClass({
   render: function () {
     var {dispatch, drillholes} = this.props;
     var drillhole = drillholes.filter((el) => {
@@ -32,27 +33,31 @@ export var PageDataActual = React.createClass({
     };
 
     return (
-      <div className="survey-data-form">
-        <ActualSurveyForm drillhole={drillhole}/>
-        <div className="actual-survey survey-margin">
-          <h2>Actual Surveys</h2>
-          <table className="pure-table pure-table-horizontal">
-            <thead>
-              <tr>
-                <th>Depth</th>
-                <th>Dip</th>
-                <th>Azimuth</th>
-                <th>Temperature</th>
-                <th>Magnetics</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {renderActualSurveys()}
-            </tbody>
-          </table>
+      <div className="page-content">
+        <TopBar/>
+        <div className="survey-data-form">
+          <ActualSurveyForm drillhole={drillhole}/>
+          <div className="actual-survey survey-margin">
+            <h2>Actual Surveys</h2>
+            <table className="pure-table pure-table-horizontal">
+              <thead>
+                <tr>
+                  <th>Depth</th>
+                  <th>Dip</th>
+                  <th>Azimuth</th>
+                  <th>Temperature</th>
+                  <th>Magnetics</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {renderActualSurveys()}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
+
     )
   }
 });
@@ -63,4 +68,4 @@ export default connect(
       drillholes: state.drillholes
     }
   }
-)(PageDataActual);
+)(PageActual);

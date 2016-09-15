@@ -14,25 +14,11 @@ var PageTrace = React.createClass({
     }
   },
   render: function () {
-    var {drillholes} = this.props;
-
-    var renderComponents = () => {
-      if (drillholes.length === 0) {
-        this.componentWillMount();
-      } else {
-        return (
-          <div>
-            <TopBar/>
-            <Plot/>
-            <PlotInfo/>
-          </div>
-        )
-      }
-    }
-
     return (
       <div className="page-content">
-        {renderComponents()}
+        <TopBar/>
+        <Plot/>
+        <PlotInfo/>
       </div>
     )
   }

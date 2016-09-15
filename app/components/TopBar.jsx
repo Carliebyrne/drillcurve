@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Link, IndexLink} from 'react-router';
+import {Router, Link, IndexLink} from 'react-router';
 import {browserHistory} from 'react-router';
 
 var actions = require('actions');
@@ -13,34 +13,18 @@ export var TopBar = React.createClass({
     }
   },
   render: function () {
-    var {dispatch, drillholes, dataPage} = this.props;
+    var {dispatch, drillholes} = this.props;
     var drillhole = drillholes.filter((el) => {
       if (el.active === true) {
         return true;
       }
     })[0];
 
-    var pageCheck = () => {
-      if (dataPage == "true") {
-        return (
-          <div className="centre-menu">
-            <div className="pure-menu pure-menu-horizontal">
-              <ul className="pure-menu-list">
-                  <li className="pure-menu-item"><Link to="plan" activeClassName="active-link" className="pure-menu-link">Plan Surveys</Link></li>
-                  <li className="pure-menu-item"><Link to="actual" activeClassName="active-link" className="pure-menu-link">Actual Surveys</Link></li>
-              </ul>
-            </div>
-          </div>
-        )
-      }
-    };
-
     return (
       <div className="page-top-bar">
         <div className="topbar-title">
           <h1>{drillhole.id}</h1>
         </div>
-        {pageCheck()}
         <div className="flex-right">
           <div className="pure-menu pure-menu-horizontal">
             <ul className="pure-menu-list">
@@ -51,15 +35,20 @@ export var TopBar = React.createClass({
                   </label>
                 </li>
                 <li className="pure-menu-item"><IndexLink to="/" activeClassName="active-link" className="pure-menu-link">Trace</IndexLink></li>
-                <li className="pure-menu-item"><Link to="/data" activeClassName="active-link" className="pure-menu-link">Data</Link></li>
-                <li className="pure-menu-item"><Link to="/edit" activeClassName="active-link" className="pure-menu-link">Edit</Link></li>
+                <li className="pure-menu-item"><Link to="/actual" activeClassName="active-link" className="pure-menu-link">Actual</Link></li>
+                <li className="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+                  <a href="#" id="menuLink1" activeClassName="active-link" className="pure-menu-link">Plan</a>
+                  <ul className="pure-menu-children">
+                    <li className="pure-menu-item"><Link to="/plan" activeClassName="active-link" className="pure-menu-link">Collar</Link></li>
+                    <li className="pure-menu-item"><Link to="/plan/surveys" activeClassName="active-link" className="pure-menu-link">Surveys</Link></li>
+                  </ul>
+              </li>
             </ul>
           </div>
         </div>
       </div>
     )
   }
-
 });
 
 export default connect(

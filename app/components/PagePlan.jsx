@@ -5,7 +5,7 @@ import {browserHistory} from 'react-router';
 import TopBar from 'TopBar';
 var actions = require('actions');
 
-export var PageEdit = React.createClass({
+export var PagePlan = React.createClass({
   onSubmit: function (e) {
     e.preventDefault();
     var {dispatch, drillholes} = this.props;
@@ -115,4 +115,4 @@ export default connect(
       drillholes: state.drillholes
     }
   }
-)(PageEdit);
+)(PagePlan);

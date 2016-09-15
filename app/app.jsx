@@ -5,11 +5,10 @@ import {Route, Router, IndexRoute, browserHistory} from 'react-router';
 
 import Main from 'Main';
 import PageTrace from 'PageTrace';
-import PageData from 'PageData';
-import PageEdit from 'PageEdit';
+import PagePlan from 'PagePlan';
 import PageBlank from 'PageBlank';
-import PageDataPlan from 'PageDataPlan';
-import PageDataActual from 'PageDataActual';
+import PagePlanSurvey from 'PagePlanSurvey';
+import PageActual from 'PageActual';
 
 var actions = require('actions');
 var demoState = require('DemoState');
@@ -31,10 +30,9 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={Main}>
-        <Route path="data" component={PageData}/>
-          <Route path="plan" component={PageDataPlan}/>
-          <Route path="actual" component={PageDataActual}/>
-        <Route path="edit" component={PageEdit}/>
+        <Route path="actual" component={PageActual}/>
+        <Route path="plan" component={PagePlan}/>
+          <Route path="plan/surveys" component={PagePlanSurvey}/>
         <Route path="blank" component={PageBlank}/>
         <IndexRoute component={PageTrace}/>
       </Route>

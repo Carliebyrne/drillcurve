@@ -1,10 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
+import TopBar from 'TopBar';
 import PlanSurveyForm from 'PlanSurveyForm';
 var actions = require('actions');
 
-export var PageDataPlan = React.createClass({
+export var PagePlanSurvey = React.createClass({
   render: function () {
     var {dispatch, drillholes} = this.props;
     var drillhole = drillholes.filter((el) => {
@@ -30,22 +31,25 @@ export var PageDataPlan = React.createClass({
     };
 
     return (
-      <div className="survey-data-form">
-        <PlanSurveyForm drillhole={drillhole}/>
-        <div className="plan-survey survey-margin">          
-          <table className="pure-table pure-table-horizontal">
-            <thead>
-              <tr>
-                <th>Depth</th>
-                <th>Dip</th>
-                <th>Azimuth</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {renderPlanSurveys()}
-            </tbody>
-          </table>
+      <div className="page-content">
+        <TopBar/>
+        <div className="survey-data-form">
+          <PlanSurveyForm drillhole={drillhole}/>
+          <div className="plan-survey survey-margin">
+            <table className="pure-table pure-table-horizontal">
+              <thead>
+                <tr>
+                  <th>Depth</th>
+                  <th>Dip</th>
+                  <th>Azimuth</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {renderPlanSurveys()}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     )
@@ -58,4 +62,4 @@ export default connect(
       drillholes: state.drillholes
     }
   }
-)(PageDataPlan);
+)(PagePlanSurvey);
