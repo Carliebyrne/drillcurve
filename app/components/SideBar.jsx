@@ -48,7 +48,8 @@ export var SideBar = React.createClass({
         planSurvey: [{depth: 0, dip: 0, azi: 0}],
         actualSurvey: [{depth: 0, dip: 0, temp: 0, mag: 0}],
         planPoints: {x: [0], y: [0], z: [0]},
-        actualPoints: {x: [0], y: [0], z: [0]}
+        actualPoints: {x: [0], y: [0], z: [0]},
+        targetBox: {x: [0], y: [0], z: [0]}
       }];
       dispatch(actions.addHole(newDrillhole));
       dispatch(actions.changeActiveHole(newID));
