@@ -30,7 +30,7 @@ export var TopBar = React.createClass({
             <ul className="pure-menu-list">
                 <li className="pure-menu-item">
                   <label className="hole-completed">
-                    <input type="checkbox" checked={drillhole.Completed} onChange={() => dispatch(actions.toggleCompleted(drillhole.id))}/>
+                    <input type="checkbox" checked={drillhole.completed} onChange={() => dispatch(actions.toggleCompleted(drillhole.id))}/>
                     Completed
                   </label>
                 </li>
@@ -40,7 +40,7 @@ export var TopBar = React.createClass({
                   <a href="#" id="menuLink1" activeClassName="active-link" className="pure-menu-link">Plan</a>
                   <ul className="pure-menu-children">
                     <li className="pure-menu-item"><Link to="/plan" activeClassName="active-link" className="pure-menu-link">Collar</Link></li>
-                    <li className="pure-menu-item"><Link to="/plan/surveys" activeClassName="active-link" className="pure-menu-link">Surveys</Link></li>
+                    <li className="pure-menu-item"><Link to="/surveys" activeClassName="active-link" className="pure-menu-link">Surveys</Link></li>
                   </ul>
               </li>
             </ul>

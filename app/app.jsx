@@ -32,7 +32,7 @@ ReactDOM.render(
       <Route path="/" component={Main}>
         <Route path="actual" component={PageActual}/>
         <Route path="plan" component={PagePlan}/>
-          <Route path="plan/surveys" component={PagePlanSurvey}/>
+          <Route path="surveys" component={PagePlanSurvey}/>
         <Route path="blank" component={PageBlank}/>
         <IndexRoute component={PageTrace}/>
       </Route>
