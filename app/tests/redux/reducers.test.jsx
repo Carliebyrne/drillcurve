@@ -72,6 +72,28 @@ describe('Reducers', () => {
       expect(res[0].target).toEqual(action.target);
     });
 
+    it('Should update the points of the specified holeid', () => {
+      var drillholes = [{
+        id: 'DDH001',
+        planPoints: {x: [0], y: [0], z: [0]},
+        actualPoints: {x: [0], y: [0], z: [0]}
+      }];
+      var action = {
+        type: 'UPDATE_DH_COORDS',
+        id: 'DDH001',
+        points: {x: [1,1], y: [1,1], z: [1,1]},
+        option: 'plan'
+      };
+
+      var res = reducers.holeReducer(drillholes, action)
+      expect(res[0].planPoints).toEqual(action.points);
+
+      action.option = 'actual';
+      var res = reducers.holeReducer(drillholes, action)
+      expect(res[0].actualPoints).toEqual(action.points);
+
+    });
+
     it('Should add a survey to the specified holeid', () => {
       var drillholes = [{
         id: 'DDH001',

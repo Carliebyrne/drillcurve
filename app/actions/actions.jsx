@@ -55,6 +55,15 @@ export var deleteSurvey = (id, depth, option) => {
   }
 };
 
+export var updateDHCoords = (id, points, option) => {
+  return {
+    type: 'UPDATE_DH_COORDS',
+    id,
+    points,
+    option
+  }
+};
+
 export var toggleShowCompleted = () => {
   return {
     type: 'TOGGLE_SHOW_COMPLETED'

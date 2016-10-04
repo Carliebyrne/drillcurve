@@ -30,6 +30,28 @@ export var holeReducer = (state = [], action) => {
           return drillhole;
         }
       });
+      case 'UPDATE_DH_COORDS':
+        return state.map((drillhole) => {
+          if (drillhole.id === action.id) {
+            var newCoords = action.points;
+            switch (action.option) {
+              case 'plan':
+                return {
+                  ...drillhole,
+                  planPoints: newCoords
+                };
+                break;
+              case 'actual':
+                return {
+                  ...drillhole,
+                  actualPoints: newCoords
+                };
+              break;
+            }
+          } else {
+            return drillhole;
+          }
+        });
     case 'ADD_SURVEY':
       return state.map((drillhole) => {
         if (drillhole.id === action.id) {

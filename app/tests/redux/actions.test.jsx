@@ -103,5 +103,15 @@ describe('Actions', () => {
       var res = actions.toggleShowCompleted();
       expect(res).toEqual(action);
     });
+    it('Should generate a calculate coordinates action', () => {
+      var action = {
+        type: 'UPDATE_DH_COORDS',
+        id: 'DDH001',
+        points: [{x: 0, y: 0, z: 0}],
+        option: 'plan'
+      };
+      var res = actions.updateDHCoords('DDH001', [{x: 0, y: 0, z: 0}], 'plan');
+      expect(res).toEqual(action);
+    });
   });
 });

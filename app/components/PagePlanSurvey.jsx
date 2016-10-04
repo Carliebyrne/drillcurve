@@ -3,9 +3,20 @@ import {connect} from 'react-redux';
 
 import TopBar from 'TopBar';
 import PlanSurveyForm from 'PlanSurveyForm';
+import dataAPI from 'dataAPI';
 var actions = require('actions');
 
 export var PagePlanSurvey = React.createClass({
+  componentWillUnmount: function () {
+    var {dispatch, drillholes} = this.props;
+    var drillhole = drillholes.filter((el) => {
+      if (el.active === true) {
+        return true;
+      }
+    })[0];
+
+    dispatch(actions.updateDHCoords(drillhole.id, dataAPI.simple(drillhole.collar, drillhole.planSurvey), 'plan'));
+  },
   render: function () {
     var {dispatch, drillholes} = this.props;
     var drillhole = drillholes.filter((el) => {
