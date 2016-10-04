@@ -10,9 +10,9 @@ export var initialState = {
       completed: false,
       completedAt: undefined,
       mFromTarget: 10,
-      collar: {x: 0, y: 0, z: 0},
+      collar: {x: 224919.189607, y: 7200204.883233, z: 1818.53511},
       target: {x: 0, y: 0, z: 0, radius: 0},
-      planSurvey: [{depth:0,dip:-18,azi:228},{depth:30,dip:-18.2,azi:228.2},{depth:60,dip:-18.4,azi:228.4},{depth:90,dip:-18.6,azi:228.6},{depth:120,dip:-18.8,azi:228.8},{depth:150,dip:-19,azi:229},{depth:180,dip:-19.2,azi:229.2},{depth:210,dip:-19.4,azi:229.4},{depth:240,dip:-19.6,azi:229.6},{depth:270,dip:-19.8,azi:229.8},{depth:300,dip:-20,azi:230},{depth:330,dip:-20.2,azi:230.2},{depth:360,dip:-20.4,azi:230.4},{depth:390,dip:-20.6,azi:230.6},{depth:420,dip:-20.8,azi:230.8},{depth:450,dip:-21,azi:231},{depth:480,dip:-21.2,azi:231.2},{depth:510,dip:-21.4,azi:231.4},{depth:540,dip:-21.6,azi:231.6},{depth:570,dip:-21.8,azi:231.8},{depth:600,dip:-22,azi:232}],
+      planSurvey: [{depth: 0, dip: -17, azi: 225},{depth: 12, dip: -17.3, azi: 225.5},{depth: 30, dip: -17.6, azi: 226},{depth: 60, dip: -18, azi: 225.25},{depth: 90, dip: -18.37, azi: 225.55},{depth: 120, dip: -18.64, azi: 225.85},{depth: 150, dip: -18.64, azi: 227.28},{depth: 180, dip: -18.94, azi: 227.78},{depth: 210, dip: -19.24, azi: 228.28},{depth: 240, dip: -19.54, azi: 228.78},{depth: 270, dip: -19.84, azi: 229.28},{depth: 300, dip: -20.14, azi: 229.78}],
       actualSurvey: [{depth:0,dip:-18,azi:228,temp:30,mag:50000},{depth:30,dip:-18.2,azi:228.2,temp:30,mag:50000},{depth:60,dip:-18.4,azi:228.4,temp:30,mag:50000},{depth:90,dip:-18.6,azi:228.6,temp:30,mag:50000},{depth:120,dip:-18.8,azi:228.8,temp:30,mag:50000},{depth:150,dip:-19,azi:229,temp:30,mag:50000},{depth:180,dip:-19.2,azi:229.2,temp:30,mag:50000},{depth:210,dip:-19.4,azi:229.4,temp:30,mag:50000},{depth:240,dip:-19.6,azi:229.6,temp:30,mag:50000},{depth:270,dip:-19.8,azi:229.8,temp:30,mag:50000},{depth:300,dip:-20,azi:230,temp:30,mag:50000},{depth:330,dip:-20.2,azi:230.2,temp:30,mag:50000},{depth:360,dip:-20.4,azi:230.4,temp:30,mag:50000},{depth:390,dip:-20.6,azi:230.6,temp:30,mag:50000},{depth:420,dip:-20.8,azi:230.8,temp:30,mag:50000},{depth:450,dip:-21,azi:231,temp:30,mag:50000},{depth:480,dip:-21.2,azi:231.2,temp:30,mag:50000},{depth:510,dip:-21.4,azi:231.4,temp:30,mag:50000},{depth:540,dip:-21.6,azi:231.6,temp:30,mag:50000},{depth:570,dip:-21.8,azi:231.8,temp:30,mag:50000},{depth:600,dip:-22,azi:232,temp:30,mag:50000}],
       planPoints: {
         x: [224919.189607, 224910.778695828, 224898.27484516, 224877.154403426, 224856.145806355, 224835.249629906, 224814.897145042, 224794.737770903, 224774.773042702, 224755.004480832, 224735.433590745, 224716.06186284],
@@ -39,7 +39,7 @@ export var initialState = {
       mFromTarget: 15,
       collar: {x: 0, y: 0, z: 0},
       target: {x: 0, y: 0, z: 0, radius: 0},
-      planSurvey: [{depth: 0, dip: -30, azi: 90}],
+      planSurvey: [{depth: 0, dip: -30, azi: 90},  {depth: 12, dip: -29.8, azi: 90.5},  {depth: 30, dip: -29.6, azi: 91},  {depth: 60, dip: -29.4, azi: 91.5},  {depth: 90, dip: -29.2, azi: 92},  {depth: 120, dip: -29, azi: 92.5},  {depth: 150, dip: -28.8, azi: 93},  {depth: 180, dip: -28.6, azi: 93.5},  {depth: 210, dip: -28.4, azi: 94},  {depth: 240, dip: -28.2, azi: 94.5},  {depth: 270, dip: -28, azi: 95},  {depth: 300, dip: -27.8, azi: 95.5}],
       actualSurvey: [{depth: 0, dip: -30, azi: 90, temp: 30, mag: 50000}],
       planPoints: {
         x: [0, -0.104718425980485, -0.418861741851588, -1.20417019108778, -2.2511550921628, -3.55973671312288, -5.12981540041119, -6.9612715864569, -9.05396579878066, -11.407738670616, -14.0224109530457, -16.8977835286525],

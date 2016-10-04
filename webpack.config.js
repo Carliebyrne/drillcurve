@@ -26,6 +26,7 @@ module.exports = {
       './app/components'
     ],
     alias: {
+      dataAPI: 'app/api/dataAPI.jsx',
       applicationStyle: 'app/styles/app.scss',
       plotly: 'app/externals/plotly.jsx',
       actions: 'app/actions/actions.jsx',
