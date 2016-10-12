@@ -1,0 +1,17 @@
+.close-menu-btn {
+  cursor: pointer;
+  vertical-align: middle;
+  font-size: 1.5em;
+
+  i {
+     color: $lighter-text;
+
+     &:hover {
+        color: $text-colour;
+     }
+  }
+}
+
+.options {
+   padding: 1rem 4rem 1rem 2rem;
+}

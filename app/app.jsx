@@ -9,6 +9,7 @@ import PagePlan from 'PagePlan';
 import PageBlank from 'PageBlank';
 import PagePlanSurvey from 'PagePlanSurvey';
 import PageActual from 'PageActual';
+import AppOptions from 'AppOptions';
 
 var actions = require('actions');
 var demoState = require('DemoState');
@@ -32,8 +33,9 @@ ReactDOM.render(
       <Route path="/" component={Main}>
         <Route path="actual" component={PageActual}/>
         <Route path="plan" component={PagePlan}/>
-          <Route path="surveys" component={PagePlanSurvey}/>
+        <Route path="surveys" component={PagePlanSurvey}/>
         <Route path="blank" component={PageBlank}/>
+        <Route path="options" component={AppOptions}/>
         <IndexRoute component={PageTrace}/>
       </Route>
     </Router>

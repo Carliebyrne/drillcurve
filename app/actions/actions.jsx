@@ -76,3 +76,10 @@ export var toggleCompleted = (id) => {
     id
   }
 };
+
+export var changeSurveyMethod = (method) => {
+ return {
+   type: 'CHANGE_SURVEY_METHOD',
+   method
+  }
+};

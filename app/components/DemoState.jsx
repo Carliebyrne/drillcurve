@@ -2,6 +2,13 @@ export var initialState = {
   userName: 'Jacob',
   company: 'Carvell Labs',
   showCompleted: true,
+  options: {
+      surveyMethod: {
+         tangent: false,
+         avgAngle: false,
+         minCurve: true
+      }
+  },
   drillholes: [
     {
       id: 'DDH001',

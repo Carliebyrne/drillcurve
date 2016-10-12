@@ -171,6 +171,33 @@ describe('Reducers', () => {
     });
   });
 
+  describe('optionsReducer', () => {
+    it('Should change the survey method', () => {
+      var options: {
+          surveyMethod: {
+             tangent: false,
+             avgAngle: false,
+             minCurve: true
+          }
+      };
+      var action = {
+        type: 'CHANGE_SURVEY_METHOD',
+        method: 'tangent'
+      };
+
+      var res = reducers.optionsReducer(options, action);
+      expect(res.surveyMethod.tangent).toEqual(true);
+      expect(res.surveyMethod.avgAngle).toEqual(false);
+      expect(res.surveyMethod.minCurve).toEqual(false);
+
+      action.method = 'avgAngle';
+      res = reducers.optionsReducer(options, action);
+      expect(res.surveyMethod.tangent).toEqual(false);
+      expect(res.surveyMethod.avgAngle).toEqual(true);
+      expect(res.surveyMethod.minCurve).toEqual(false);
+    });
+  });
+
   describe('showCompletedReducer', () => {
     it('Should toggle show completed', () => {
       var action = {

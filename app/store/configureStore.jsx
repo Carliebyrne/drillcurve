@@ -1,11 +1,12 @@
 var redux = require('redux');
-var {showCompletedReducer, holeReducer, userNameReducer, companyReducer} = require('reducers');
+var {showCompletedReducer, holeReducer, userNameReducer, companyReducer, optionsReducer} = require('reducers');
 
 export var configure = (initialState = {}) => {
   var reducer = redux.combineReducers({
     userName: userNameReducer,
     company: companyReducer,
     showCompleted: showCompletedReducer,
+    options: optionsReducer,
     drillholes: holeReducer
   })
 

@@ -173,6 +173,36 @@ export var holeReducer = (state = [], action) => {
   }
 };
 
+export var optionsReducer = (state = {}, action) => {
+  switch (action.type) {
+    case 'CHANGE_SURVEY_METHOD':
+      switch (action.method) {
+         case 'tangent':
+            return {
+               ...state,
+               surveyMethod: {tangent: true, avgAngle: false, minCurve: false}
+            }
+            break;
+         case 'avgAngle':
+            return {
+               ...state,
+               surveyMethod: {tangent: false, avgAngle: true, minCurve: false}
+            }
+            break;
+         case 'minCurve':
+            return {
+               ...state,
+               surveyMethod: {tangent: false, avgAngle: false, minCurve: true}
+            }
+            break;
+      default:
+         return state;
+      }
+    default:
+      return state;
+  }
+};
+
 export var showCompletedReducer = (state = false, action) => {
   switch (action.type) {
     case 'TOGGLE_SHOW_COMPLETED':

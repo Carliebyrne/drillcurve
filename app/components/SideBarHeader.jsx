@@ -1,5 +1,6 @@
 import React from 'react';
-var {connect} = require('react-redux');
+import {connect} from 'react-redux';
+import {browserHistory} from 'react-router';
 
 export var SideBarHeader = React.createClass({
   render: function () {
@@ -12,7 +13,7 @@ export var SideBarHeader = React.createClass({
           <p>{userName}</p>
           <p>{company}</p>
         </div>
-        <div className="options-menu-btn"></div>
+        <div className="options-menu-btn" onClick={() => {browserHistory.push('/options')}}></div>
       </div>
     )
   }

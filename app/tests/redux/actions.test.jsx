@@ -95,6 +95,17 @@ describe('Actions', () => {
     });
   });
 
+  describe('Options actions', () => {
+    it('Should generate a change survey method action', () => {
+      var action = {
+         type: 'CHANGE_SURVEY_METHOD',
+         method: 'tangent'
+      };
+      var res = actions.changeSurveyMethod('tangent');
+      expect(res).toEqual(action);
+    });
+  });
+
   describe('Other actions', () => {
     it('Should generate a toggle show completed action', () => {
       var action = {
