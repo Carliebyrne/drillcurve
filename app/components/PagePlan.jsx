@@ -1,12 +1,37 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
+import Modal from 'react-modal';
 
 import TopBar from 'TopBar';
 var actions = require('actions');
 
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
+
 export var PagePlan = React.createClass({
-  onSubmit: function (e) {
+   getInitialState: function() {
+     return {modalIsOpen: false};
+   },
+   openModal: function() {
+     this.setState({modalIsOpen: true});
+   },
+   afterOpenModal: function() {
+     // references are now sync'd and can be accessed.
+     this.refs.subtitle.style.color = '#f00';
+   },
+   closeModal: function() {
+     this.setState({modalIsOpen: false});
+   },
+   onSubmit: function (e) {
     e.preventDefault();
     var {dispatch, drillholes} = this.props;
 
@@ -20,30 +45,31 @@ export var PagePlan = React.createClass({
     var newTarget = {x: this.refs.tx.value, y: this.refs.ty.value, z: this.refs.tz.value, radius: this.refs.radius.value};
 
     dispatch(actions.updateHoleCoords(drillhole.id, newCollar, newTarget));
-  },
-  deleteHole: function (e) {
-    e.preventDefault();
+   },
+   deleteHole: function (e) {
+   e.preventDefault();
+   this.closeModal();
 
-    var {dispatch, drillholes} = this.props;
+   var {dispatch, drillholes} = this.props;
 
-    var drillhole = drillholes.filter((el) => {
+   var drillhole = drillholes.filter((el) => {
       if (el.active === true) {
         return true;
       }
-    })[0];
+   })[0];
 
-    if (drillholes.length > 1) {
+   if (drillholes.length > 1) {
       if (drillholes[0].id === drillhole.id) {
         dispatch(actions.changeActiveHole(drillholes[1].id));
       } else {
         dispatch(actions.changeActiveHole(drillholes[0].id));
       }
       dispatch(actions.deleteHole(drillhole.id));
-    } else {
+   } else {
       browserHistory.push('/blank');
       dispatch(actions.deleteHole(drillhole.id));
-    }
-  },
+   }
+   },
   render: function () {
     var {drillholes} = this.props;
 
@@ -54,8 +80,17 @@ export var PagePlan = React.createClass({
     })[0];
 
     return (
-      <div className="page-content">
+      <div className="page-content zero-index">
         <TopBar/>
+           <Modal
+             isOpen={this.state.modalIsOpen}
+             onAfterOpen={this.afterOpenModal}
+             onRequestClose={this.closeModal}
+             style={customStyles} >
+             <p className="modal-text">Are you sure you want to delete this hole?</p>
+             <button className="pure-button btn-primary" onClick={this.closeModal}>No</button>
+             <button className="pure-button btn-warning" onClick={this.deleteHole}>Yes</button>
+           </Modal>
         <div className="new-hole-form">
           <form className="pure-form pure-form-aligned">
             <fieldset>
@@ -101,7 +136,7 @@ export var PagePlan = React.createClass({
           </form>
           <div className="form-buttons">
             <button type="submit" className="pure-button btn-primary" onClick={this.onSubmit}>Save</button>
-            <button type="submit" className="pure-button btn-warning" onClick={this.deleteHole}>Delete Hole</button>
+            <button type="submit" className="pure-button btn-warning" onClick={this.openModal}>Delete Hole</button>
           </div>
         </div>
       </div>

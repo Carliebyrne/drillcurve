@@ -12,11 +12,14 @@
 }
 
 .btn-warning {
+  float: right;
+  margin-right: 0.5rem;
   color: $secondary-text-colour;
   background: $btn-warning-colour;
 }
 
 .btn-primary {
+  float: right;
   color: $secondary-text-colour;
   background: $btn-colour;
 }

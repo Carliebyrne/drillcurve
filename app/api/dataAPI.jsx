@@ -110,6 +110,9 @@ module.exports = {
             return projected;
       }
    },
+   targetBox: function () {
+      
+   },
    buildRates: function (surveys) {
       var build = new Array(surveys.length - 1);
       for (var i = 0; i < surveys.length - 1; i++) {
