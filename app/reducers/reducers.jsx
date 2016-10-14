@@ -47,6 +47,12 @@ export var holeReducer = (state = [], action) => {
                   actualPoints: newCoords
                 };
               break;
+              case 'proj':
+                return {
+                 ...drillhole,
+                 projectedPoints: newCoords
+                };
+              break;
             }
           } else {
             return drillhole;

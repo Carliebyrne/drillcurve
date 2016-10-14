@@ -16,6 +16,7 @@ module.exports = {
          z: new Array(surveys.length)
       };
 
+      //loop through the array calculating the using the last survey to calculate the magnitude fo rx, y, and z and adding to the last point.
       for (var i = 0; i < surveys.length; i++) {
          if (i === 0) {
             points.x[0] = collar.x;
@@ -33,15 +34,26 @@ module.exports = {
       switch (method) {
          case 'expSmooth':
 
+            //check if there are less than two surveys.
+            if (actualSurveys.length < 2) {
+               return [{
+                  depth: 0,
+                  dip: 0,
+                  azi: 0
+               }];
+            }
+
+            //Generate the build rates from the actual surveys
             var build = this.buildRates(actualSurveys);
 
+            //calculate the median survey depth to project forward
             build.sort((a, b) => a.depthChg - b.depthChg);
             let lowMiddle = Math.floor((build.length - 1) / 2);
             let highMiddle = Math.ceil((build.length - 1) / 2);
             var medianDepth = (build[lowMiddle].depthChg + build[highMiddle].depthChg) / 2;
 
+            //Create the smoothed array and calculate the exponentially smoothed build rates using the single exponential smoothing formula
             var smoothed = new Array(build.length);
-
             for (var i = 0; i < smoothed.length; i++) {
                if (i === 0) {
                   smoothed[0] = {
@@ -56,6 +68,7 @@ module.exports = {
                }
             }
 
+            // grab the smoothed future build rate from the last value in the smoothed array and store the last survey into the first projection survey
             let depth = actualSurveys[actualSurveys.length - 1].depth;
             let projDip = smoothed[smoothed.length - 1].dip;
             let projAzi = smoothed[smoothed.length - 1].azi;
@@ -66,7 +79,9 @@ module.exports = {
             }];
             i = 0;
 
+            //loop through checking that the depth is still less than the end of hole value projecting forward by the median depth change each iteration
             while (projected[i].depth < eoh && projected[i].depth + medianDepth < eoh) {
+
                projected = [
                   ...projected,
                   {
@@ -78,6 +93,7 @@ module.exports = {
                i++;
             }
 
+            //if the loop stopped before the eoh (it almost always will) add another projection at the eoh depth.
             if (i > 0 && projected[i].depth < eoh && projected[i].depth + medianDepth >= eoh) {
                projected = [
                   ...projected,
@@ -89,6 +105,7 @@ module.exports = {
                ]
             }
 
+            //sort and return the result
             projected.sort((a, b) => a.depth - b.depth);
             return projected;
       }

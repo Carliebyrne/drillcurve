@@ -74,7 +74,27 @@ var Plot = React.createClass({
                   width: 2
               },
               type: 'scatter3d'
-          }
+          }, {
+              x: drillhole.projectedPoints.x,
+              y: drillhole.projectedPoints.y,
+              z: drillhole.projectedPoints.z,
+              mode: 'lines',
+              name: 'Projected',
+              marker: {
+                  color: '#FF7C38',
+                  size: 12,
+                  symbol: 'circle',
+                  line: {
+                  color: 'rgb(0,0,0)',
+                  width: 0
+                  }
+              },
+              line: {
+                  color: '#F98B60',
+                  width: 4
+              },
+              type: 'scatter3d'
+            }
         ],
         layout: {
           autosize: false,
@@ -101,6 +121,7 @@ var Plot = React.createClass({
     plotDiv.data[0].x = drillhole.planPoints.x; plotDiv.data[0].y = drillhole.planPoints.y; plotDiv.data[0].z = drillhole.planPoints.z;
     plotDiv.data[1].x = drillhole.actualPoints.x; plotDiv.data[1].y = drillhole.actualPoints.y; plotDiv.data[1].z = drillhole.actualPoints.z;
     plotDiv.data[2].x = drillhole.targetBox.x; plotDiv.data[2].y = drillhole.targetBox.y; plotDiv.data[2].z = drillhole.targetBox.z;
+    plotDiv.data[3].x = drillhole.projectedPoints.x; plotDiv.data[3].y = drillhole.projectedPoints.y; plotDiv.data[3].z = drillhole.projectedPoints.z;
 
     Plotly.redraw(plotDiv);
   },

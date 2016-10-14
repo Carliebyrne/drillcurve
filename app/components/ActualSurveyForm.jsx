@@ -46,7 +46,7 @@ export var ActualSurveyForm = React.createClass({
         </form>
         <button type="submit" className="pure-button btn-primary" onClick={() => {
             if (this.refs.depth.value && this.refs.dip.value && this.refs.azi.value && !depthCheck(this.refs.depth.value)) {
-              var survey = {depth: this.refs.depth.value, dip: this.refs.dip.value, azi: this.refs.azi.value, temp: this.refs.temp.value, mag: this.refs.mag.value};
+              var survey = {depth: parseFloat(this.refs.depth.value), dip: parseFloat(this.refs.dip.value), azi: parseFloat(this.refs.azi.value), temp: this.refs.temp.value, mag: this.refs.mag.value};
               this.refs.depth.value = ""; this.refs.dip.value = ""; this.refs.azi.value = ""; this.refs.temp.value = ""; this.refs.mag.value = "";
               dispatch(actions.addSurvey(drillhole.id, survey, 'actual'));
             }
