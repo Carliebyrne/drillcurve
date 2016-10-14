@@ -196,6 +196,30 @@ describe('Reducers', () => {
       expect(res.surveyMethod.avgAngle).toEqual(true);
       expect(res.surveyMethod.minCurve).toEqual(false);
     });
+    it('Should change the projection method', () => {
+      var options: {
+          projectionMethod: {
+             lastValue: false,
+             movAvg: false,
+             expSmooth: true
+          }
+      };
+      var action = {
+        type: 'CHANGE_PROJECTION_METHOD',
+        method: 'movAvg'
+      };
+
+      var res = reducers.optionsReducer(options, action);
+      expect(res.projectionMethod.lastValue).toEqual(false);
+      expect(res.projectionMethod.movAvg).toEqual(true);
+      expect(res.projectionMethod.expSmooth).toEqual(false);
+
+      action.method = 'lastValue';
+      res = reducers.optionsReducer(options, action);
+      expect(res.projectionMethod.lastValue).toEqual(true);
+      expect(res.projectionMethod.movAvg).toEqual(false);
+      expect(res.projectionMethod.expSmooth).toEqual(false);
+    });
   });
 
   describe('showCompletedReducer', () => {

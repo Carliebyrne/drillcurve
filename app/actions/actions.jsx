@@ -83,3 +83,10 @@ export var changeSurveyMethod = (method) => {
    method
   }
 };
+
+export var changeProjectionMethod = (method) => {
+ return {
+   type: 'CHANGE_PROJECTION_METHOD',
+   method
+  }
+};

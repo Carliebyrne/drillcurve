@@ -47,6 +47,8 @@ export var SideBar = React.createClass({
         target: {x: 0, y: 0, z: 0, radius: 0},
         planSurvey: [{depth: 0, dip: 0, azi: 0}],
         actualSurvey: [{depth: 0, dip: 0, temp: 0, mag: 0}],
+        projectedSurvey: [],
+        projectedPoints: {x: [], y: [], z: []},
         planPoints: {x: [0], y: [0], z: [0]},
         actualPoints: {x: [0], y: [0], z: [0]},
         targetBox: {x: [0], y: [0], z: [0]}

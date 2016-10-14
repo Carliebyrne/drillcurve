@@ -4,16 +4,6 @@ import {connect} from 'react-redux';
 var actions = require('actions');
 
 export var ActualSurveyForm = React.createClass({
-  componentWillUnmount: function () {
-    var {dispatch, drillholes} = this.props;
-    var drillhole = drillholes.filter((el) => {
-      if (el.active === true) {
-        return true;
-      }
-    })[0];
-
-    dispatch(actions.updateDHCoords(drillhole.id, dataAPI.simple(drillhole.collar, drillhole.planSurvey), 'actual'));
-  },
   render: function () {
     var {dispatch, drillhole} = this.props;
 

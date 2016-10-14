@@ -198,6 +198,29 @@ export var optionsReducer = (state = {}, action) => {
       default:
          return state;
       }
+      case 'CHANGE_PROJECTION_METHOD':
+        switch (action.method) {
+           case 'lastValue':
+              return {
+                 ...state,
+                 projectionMethod: {lastValue: true, movAvg: false, expSmooth: false}
+              }
+              break;
+           case 'movAvg':
+              return {
+                 ...state,
+                 projectionMethod: {lastValue: false, movAvg: true, expSmooth: false}
+              }
+              break;
+           case 'expSmooth':
+              return {
+                 ...state,
+                 projectionMethod: {lastValue: false, movAvg: false, expSmooth: true}
+              }
+              break;
+        default:
+           return state;
+        }
     default:
       return state;
   }

@@ -104,6 +104,14 @@ describe('Actions', () => {
       var res = actions.changeSurveyMethod('tangent');
       expect(res).toEqual(action);
     });
+    it('Should generate a change projection method action', () => {
+      var action = {
+         type: 'CHANGE_PROJECTION_METHOD',
+         method: 'expSmooth'
+      };
+      var res = actions.changeProjectionMethod('expSmooth');
+      expect(res).toEqual(action);
+    });
   });
 
   describe('Other actions', () => {

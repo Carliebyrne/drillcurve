@@ -36,13 +36,8 @@ export var TopBar = React.createClass({
                 </li>
                 <li className="pure-menu-item"><IndexLink to="/" activeClassName="active-link" className="pure-menu-link">Trace</IndexLink></li>
                 <li className="pure-menu-item"><Link to="/actual" activeClassName="active-link" className="pure-menu-link">Actual</Link></li>
-                <li className="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
-                  <a href="#" id="menuLink1" activeClassName="active-link" className="pure-menu-link">Plan</a>
-                  <ul className="pure-menu-children">
-                    <li className="pure-menu-item"><Link to="/plan" activeClassName="active-link" className="pure-menu-link">Collar</Link></li>
-                    <li className="pure-menu-item"><Link to="/surveys" activeClassName="active-link" className="pure-menu-link">Surveys</Link></li>
-                  </ul>
-              </li>
+                <li className="pure-menu-item"><Link to="/surveys" activeClassName="active-link" className="pure-menu-link">Plan</Link></li>
+                <li className="pure-menu-item"><Link to="/plan" activeClassName="active-link" className="pure-menu-link">Collar</Link></li>
             </ul>
           </div>
         </div>
