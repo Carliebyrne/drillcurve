@@ -122,8 +122,9 @@ var Plot = React.createClass({
         layout: {
           autosize: false,
           width: 1000,
-          height: 800,
+          height: 1000,
           scene: {
+            aspectratio: { x: 1, y: 1, z: 1 },
             xaxis: {
              dtick: 50,
              range: xrange
@@ -167,7 +168,11 @@ var Plot = React.createClass({
       var zrange = result.zrange;
 
       var update = {
+         autosize: false,
+         width: 1000,
+         height: 1000,
          scene: {
+           aspectratio: { x: 1, y: 1, z: 1 },
             xaxis: {
                dtick: 50,
                range: xrange
