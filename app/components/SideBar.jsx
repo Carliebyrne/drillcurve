@@ -106,18 +106,14 @@ export var SideBar = React.createClass({
 
     return (
       <div className="sidebar">
-        <div>
-          <SideBarHeader/>
-        </div>
+        <SideBarHeader/>
         <div className="sidebar-list-container">
           {renderDrillholes()}
           <div className="new-drillhole" onClick={() => {this.handleClick()}}>
             {renderNewHole()}
           </div>
         </div>
-        <div>
-          <SideBarFooter/>
-        </div>
+        <SideBarFooter/>
       </div>
     )
   }

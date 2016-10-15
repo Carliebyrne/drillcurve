@@ -9,6 +9,7 @@ export var SideBarHeader = React.createClass({
     return (
       <div className="sidebar-header">
         <div className="active-dot"></div>
+        <img src="img/rabbithole-square.png" alt="rabbithole" height="50" width="auto" className="logo-image"/>
         <div className="user-details">
           <p>{userName}</p>
           <p>{company}</p>

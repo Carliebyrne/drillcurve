@@ -1,9 +1,11 @@
 .sidebar {
+  z-index: 1;
   position: fixed;
   top: 0; left: 0;
   margin: 0;
   padding: 0;
   min-width: 250px;
+  width: 13rem;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -19,6 +21,10 @@
   background-color: $tertiary-background;
   border-bottom: 1px solid $light-border;
   align-items: center;
+
+  .logo-image {
+     padding-right: 1rem;
+ }
 
   .user-details {
     padding-right: 4rem;
@@ -53,6 +59,7 @@
 .sidebar-list-container {
   background-color: $secondary-background;
   height: 100vh;
+  z-index: 1;
 
   > :first-child {
     margin-top: 1rem;

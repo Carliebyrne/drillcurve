@@ -1,6 +1,6 @@
 export var initialState = {
   userName: 'Jacob',
-  company: 'Carvell Labs',
+  company: 'rabbithole solutions',
   showCompleted: true,
   options: {
       surveyMethod: {
