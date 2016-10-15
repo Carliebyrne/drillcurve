@@ -72,6 +72,29 @@ describe('Reducers', () => {
       expect(res[0].target).toEqual(action.target);
     });
 
+    it('Should update the target box coords of the holeid', () => {
+      var drillholes = [{
+        id: 'DDH001',
+        targetBox: {
+           x: [0, 0, 0, 0],
+           y: [0, 0, 0, 0],
+           z: [0, 0, 0, 0]
+       }
+      }];
+      var action = {
+        type: 'UPDATE_TARGET_COORDS',
+        id: 'DDH001',
+        targetBox: {
+           x: [1, 1, 1, 1],
+           y: [1, 1, 1, 1],
+           z: [1, 1, 1, 1]
+       }
+      };
+
+      var res = reducers.holeReducer(drillholes, action)
+      expect(res[0].targetBox).toEqual(action.targetBox);
+    });
+
     it('Should update the points of the specified holeid', () => {
       var drillholes = [{
         id: 'DDH001',

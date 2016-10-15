@@ -21,7 +21,7 @@ export var PageActual = React.createClass({
 
          var eoh = drillhole.planSurvey[drillhole.planSurvey.length - 1].depth;
          var lastPoint = newActualPoints.x.length - 1;
-         var projectedSurveys = dataAPI.projection('expSmooth', drillhole.actualSurvey, eoh); debugger;
+         var projectedSurveys = dataAPI.projection('expSmooth', drillhole.actualSurvey, eoh);
          var projectedPoints = dataAPI.simple({
           x: newActualPoints.x[lastPoint],
           y: newActualPoints.y[lastPoint],

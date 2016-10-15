@@ -110,8 +110,23 @@ module.exports = {
             return projected;
       }
    },
-   targetBox: function () {
-      
+   targetBox: function (target, lastSurvey) {
+      var azi = lastSurvey.azi;
+      let r = 0.5 * target.radius;
+
+      //apply the correct quadrant rule depending on the value
+      if (azi >= 90) {
+         azi = azi - 90;
+      }
+
+      //retun the values of the target box
+      let x = r * Math.cos(azi * Math.PI / 180)
+      let y = r * Math.sin(azi * Math.PI / 180)
+      return {
+         x: [target.x + x, target.x + x, target.x - x, target.x - x, target.x + x],
+         y: [target.y + y, target.y + y, target.y - y, target.y - y, target.y + y],
+         z: [target.z - r, target.z + r, target.z + r, target.z - r, target.z - r]
+      }
    },
    buildRates: function (surveys) {
       var build = new Array(surveys.length - 1);

@@ -30,6 +30,17 @@ export var holeReducer = (state = [], action) => {
           return drillhole;
         }
       });
+      case 'UPDATE_TARGET_COORDS':
+        return state.map((drillhole) => {
+          if (drillhole.id === action.id) {
+           return {
+             ...drillhole,
+             targetBox: action.targetBox
+           };
+          } else {
+           return drillhole;
+          }
+        });
       case 'UPDATE_DH_COORDS':
         return state.map((drillhole) => {
           if (drillhole.id === action.id) {

@@ -23,7 +23,7 @@ export var initialState = {
       completedAt: undefined,
       mFromTarget: 10,
       collar: {x: 493698.25, y: 6950425.3, z: 14},
-      target: {x: 0, y: 0, z: 0, radius: 0},
+      target: {x: 0, y: 0, z: 0, radius: 20},
       planSurvey: [{depth: 0, dip: -17, azi: 225},{depth: 12, dip: -16.8, azi: 225.1},{depth: 30, dip: -16.6, azi: 225.2},{depth: 60, dip: -16.4, azi: 225.3},{depth: 90, dip: -16.2, azi: 225.4},{depth: 120, dip: -16, azi: 225.5},{depth: 150, dip: -15.6, azi: 226},{depth: 180, dip: -15.2, azi: 226.5},{depth: 210, dip: -14.8, azi: 227},{depth: 240, dip: -14.4, azi: 227.5},{depth: 270, dip: -14, azi: 228},{depth: 300, dip: -13.6, azi: 228.5}],
       actualSurvey: [{depth: 0, dip: -17.4, azi: 224.1, temp:30, mag:50000},{depth: 12, dip: -17.3, azi: 224.6, temp:30, mag:50000},{depth: 30, dip: -17.2, azi: 225.1, temp:30, mag:50000},{depth: 60, dip: -17.1, azi: 225.6, temp:30, mag:50000},{depth: 90, dip: -17, azi: 226.1, temp:30, mag:50000},{depth: 120, dip: -16.9, azi: 226.6, temp:30, mag:50000},{depth: 150, dip: -16.8, azi: 227.1, temp:30, mag:50000},{depth: 180, dip: -16.7, azi: 227.6, temp:30, mag:50000},{depth: 210, dip: -16.5, azi: 228.1, temp:30, mag:50000},{depth: 240, dip: -16.3, azi: 228.6, temp:30, mag:50000},{depth: 270, dip: -16.1, azi: 229.1, temp:30, mag:50000},{depth: 300, dip: -15.9, azi: 229.6, temp:30, mag:50000}],
       projectedPoints: {x: [], y: [], z: []},
@@ -38,9 +38,9 @@ export var initialState = {
         z: [14, 10.4315015110666, 5.10875661027373, -3.71245314669539, -12.4836042883775, -21.2046700963251, -29.8756240046592, -38.4964396001506, -47.0168999412682, -55.4369012088919, -63.7563408079632, -71.9751173687362]
       },
       targetBox: {
-        x: [493510.393669338, 493479.850842343, 493479.850842343, 493510.393669338, 493510.393669338],
-        y: [6950191.77193154, 6950217.60090208, 6950217.60090208, 6950191.77193154, 6950191.77193154],
-        z: [-63.0818396166763, -63.0818396166763, -103.081839616676, -103.081839616676, -63.0818396166763]
+        x: [493484.242292509, 493484.242292509, 493499.221406925, 493499.221406925, 493484.242292509],
+        y: [6950214.40819742, 6950214.40819742, 6950201.15579646, 6950201.15579646, 6950214.40819742],
+        z: [-75.0891293293674, -55.0891293293674, -55.0891293293674, -75.0891293293674, -75.0891293293674]
       }
     },
     {
@@ -51,7 +51,7 @@ export var initialState = {
       completedAt: undefined,
       mFromTarget: 15,
       collar: {x: 0, y: 0, z: 0},
-      target: {x: 0, y: 0, z: 0, radius: 0},
+      target: {x: 0, y: 0, z: 0, radius: 20},
       planSurvey: [{depth: 0, dip: -30, azi: 90},  {depth: 12, dip: -29.8, azi: 90.5},  {depth: 30, dip: -29.6, azi: 91},  {depth: 60, dip: -29.4, azi: 91.5},  {depth: 90, dip: -29.2, azi: 92},  {depth: 120, dip: -29, azi: 92.5},  {depth: 150, dip: -28.8, azi: 93},  {depth: 180, dip: -28.6, azi: 93.5},  {depth: 210, dip: -28.4, azi: 94},  {depth: 240, dip: -28.2, azi: 94.5},  {depth: 270, dip: -28, azi: 95},  {depth: 300, dip: -27.8, azi: 95.5}],
       actualSurvey: [{depth: 0, dip: -30, azi: 90, temp: 30, mag: 50000}],
       projectedPoints: {x: [], y: [], z: []},
@@ -79,7 +79,7 @@ export var initialState = {
       completedAt: 500,
       mFromTarget: 8,
       collar: {x: 0, y: 0, z: 0},
-      target: {x: 0, y: 0, z: 0, radius: 0},
+      target: {x: 0, y: 0, z: 0, radius: 20},
       planSurvey: [{depth: 0, dip: 20, azi: 150}],
       actualSurvey: [{depth: 0, dip: -20, azi: 150, temp: 30, mag: 50000}],
       projectedPoints: {x: [], y: [], z: []},

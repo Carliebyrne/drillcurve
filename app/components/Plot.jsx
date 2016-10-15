@@ -100,6 +100,9 @@ var Plot = React.createClass({
           autosize: false,
           width: 1000,
           height: 800,
+          aspectratio: {
+           x: 1, y: 1, z: 1,
+          },
         }
       }
   },

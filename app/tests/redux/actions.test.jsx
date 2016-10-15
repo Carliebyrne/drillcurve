@@ -41,6 +41,26 @@ describe('Actions', () => {
       expect(res).toEqual(action);
     });
 
+    it('Should generate an UPDATE_TARGET_COORDS action', () => {
+      var targetBox = {
+          x: [0, 0, 0, 0],
+          y: [0, 0, 0, 0],
+          z: [0, 0, 0, 0]
+      };
+      var action = {
+        type: 'UPDATE_TARGET_COORDS',
+        id: 'DDH001',
+        targetBox: {
+         x: [0, 0, 0, 0],
+         y: [0, 0, 0, 0],
+         z: [0, 0, 0, 0]
+        }
+      };
+
+      var res = actions.updateTargetCoords('DDH001', targetBox);
+      expect(res).toEqual(action);
+    });
+
     it('Should generate a change active drillhole action', () => {
       var action = {
         type: 'CHANGE_ACTIVE_HOLE',

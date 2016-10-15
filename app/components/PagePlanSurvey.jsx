@@ -15,7 +15,28 @@ export var PagePlanSurvey = React.createClass({
       }
     })[0];
 
-    dispatch(actions.updateDHCoords(drillhole.id, dataAPI.simple(drillhole.collar, drillhole.planSurvey), 'plan'));
+    if (drillhole.target.radius !== 0) {
+      var planPoints = dataAPI.simple(drillhole.collar, drillhole.planSurvey);
+      var lastPoint = planPoints.x.length - 1;
+      if (drillhole.target.x === 0 && drillhole.target.y === 0 && drillhole.target.z === 0) {
+        var targetPoints = {
+           x: planPoints.x[lastPoint],
+           y: planPoints.y[lastPoint],
+           z: planPoints.z[lastPoint],
+           radius: drillhole.target.radius
+        };
+      } else {
+        var targetPoints = {
+           x: drillhole.target.x,
+           y: drillhole.target.y,
+           z: drillhole.target.z,
+           radius: drillhole.target.radius
+        };
+      }
+      dispatch(actions.updateTargetCoords(drillhole.id, dataAPI.targetBox(targetPoints, drillhole.planSurvey[drillhole.planSurvey.length - 1])));
+    }
+
+    dispatch(actions.updateDHCoords(drillhole.id, planPoints, 'plan'));
   },
   render: function () {
     var {dispatch, drillholes} = this.props;

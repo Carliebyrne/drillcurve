@@ -21,6 +21,14 @@ export var updateHoleCoords = (id, collar, target) => {
   }
 };
 
+export var updateTargetCoords = (id, targetBox) => {
+  return {
+    type: 'UPDATE_TARGET_COORDS',
+    id,
+    targetBox
+  }
+};
+
 export var changeActiveHole = (id) => {
   return {
     type: 'CHANGE_ACTIVE_HOLE',
