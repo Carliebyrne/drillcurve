@@ -8,12 +8,16 @@ var actions = require('actions');
 
 export var PageActual = React.createClass({
    componentWillUnmount: function () {
-      var {dispatch, drillholes} = this.props;
+      var {dispatch, drillholes, options} = this.props;
       var drillhole = drillholes.filter((el) => {
          if (el.active === true) {
             return true;
          }
       })[0];
+
+      if (options.projectionMethod.lastValue === true) {var projectionMethod = 'lastValue'}
+      else if (options.projectionMethod.movAvg === true) {var projectionMethod = 'movAvg'}
+      else {var projectionMethod = 'expSmooth'};
 
       if (drillhole.actualSurvey.length > 0) {
          var newActualPoints = dataAPI.simple(drillhole.collar, drillhole.actualSurvey);
@@ -21,7 +25,7 @@ export var PageActual = React.createClass({
 
          var eoh = drillhole.planSurvey[drillhole.planSurvey.length - 1].depth;
          var lastPoint = newActualPoints.x.length - 1;
-         var projectedSurveys = dataAPI.projection('expSmooth', drillhole.actualSurvey, eoh);
+         var projectedSurveys = dataAPI.projection(projectionMethod, drillhole.actualSurvey, eoh);
          var projectedPoints = dataAPI.simple({
           x: newActualPoints.x[lastPoint],
           y: newActualPoints.y[lastPoint],
@@ -89,7 +93,8 @@ export var PageActual = React.createClass({
 export default connect(
   (state) => {
     return {
-      drillholes: state.drillholes
+      drillholes: state.drillholes,
+      options: state.options
     }
   }
 )(PageActual);

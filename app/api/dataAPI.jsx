@@ -31,27 +31,28 @@ module.exports = {
       return points;
    },
    projection: function (method, actualSurveys, eoh) {
-      switch (method) {
-         case 'expSmooth':
+         //check if there are less than two surveys.
+         if (actualSurveys.length < 2) {
+            return [{
+               depth: 0,
+               dip: 0,
+               azi: 0
+            }];
+         }
 
-            //check if there are less than two surveys.
-            if (actualSurveys.length < 2) {
-               return [{
-                  depth: 0,
-                  dip: 0,
-                  azi: 0
-               }];
-            }
+         //Generate the build rates from the actual surveys
+         var build = this.buildRates(actualSurveys);
 
-            //Generate the build rates from the actual surveys
-            var build = this.buildRates(actualSurveys);
+         //calculate the median survey depth to project forward
+         build.sort((a, b) => a.depthChg - b.depthChg);
+         let lowMiddle = Math.floor((build.length - 1) / 2);
+         let highMiddle = Math.ceil((build.length - 1) / 2);
+         var medianDepth = (build[lowMiddle].depthChg + build[highMiddle].depthChg) / 2;
+         var depth = actualSurveys[actualSurveys.length - 1].depth;
+         build.sort((a, b) => a.depth - b.depth);
 
-            //calculate the median survey depth to project forward
-            build.sort((a, b) => a.depthChg - b.depthChg);
-            let lowMiddle = Math.floor((build.length - 1) / 2);
-            let highMiddle = Math.ceil((build.length - 1) / 2);
-            var medianDepth = (build[lowMiddle].depthChg + build[highMiddle].depthChg) / 2;
-
+         switch (method) {
+            case 'expSmooth':
             //Create the smoothed array and calculate the exponentially smoothed build rates using the single exponential smoothing formula
             var smoothed = new Array(build.length);
             for (var i = 0; i < smoothed.length; i++) {
@@ -68,47 +69,68 @@ module.exports = {
                }
             }
 
-            // grab the smoothed future build rate from the last value in the smoothed array and store the last survey into the first projection survey
-            let depth = actualSurveys[actualSurveys.length - 1].depth;
-            let projDip = smoothed[smoothed.length - 1].dip;
-            let projAzi = smoothed[smoothed.length - 1].azi;
-            var projected = [{
-               depth: depth,
-               dip: actualSurveys[actualSurveys.length - 1].dip,
-               azi: actualSurveys[actualSurveys.length - 1].azi
-            }];
-            i = 0;
+            // grab the smoothed future build rate from the last value in the smoothed array
+            var projDip = smoothed[smoothed.length - 1].dip;
+            var projAzi = smoothed[smoothed.length - 1].azi;
+            break;
 
-            //loop through checking that the depth is still less than the end of hole value projecting forward by the median depth change each iteration
-            while (projected[i].depth < eoh && projected[i].depth + medianDepth < eoh) {
+            case 'movAvg':
+               //grab the last three values of the build and turn
+               var movAvg = build.slice(1).slice(-3);
+               var projDip = 0; var projAzi = 0;
 
-               projected = [
-                  ...projected,
-                  {
-                     depth: projected[i].depth + medianDepth,
-                     dip: projected[i].dip + projDip,
-                     azi: projected[i].azi + projAzi,
-                  }
-               ]
-               i++;
-            }
+               //loop through summing the the dip and azis
+               for (var i = 0; i < movAvg.length; i++) {
+                  projDip = projDip + movAvg[i].dip;
+                  projAzi = projAzi + movAvg[i].azi;
+               }
+               //divide by three for the simple average
+               var projDip = projDip / 3; var projAzi = projAzi / 3;
+               break;
+            case 'lastValue':
+               //store the last value into the projected dip and azi
+               var projDip = build[build.length - 1].dip;
+               var projAzi = build[build.length - 1].azi;
+               break;
+         }
 
-            //if the loop stopped before the eoh (it almost always will) add another projection at the eoh depth.
-            if (i > 0 && projected[i].depth < eoh && projected[i].depth + medianDepth >= eoh) {
-               projected = [
-                  ...projected,
-                  {
-                     depth: eoh,
-                     dip: projected[i].dip + projDip,
-                     azi: projected[i].azi + projAzi,
-                  }
-               ]
-            }
+         //store the last survey into the first projection survey
+         var projected = [{
+            depth: depth,
+            dip: actualSurveys[actualSurveys.length - 1].dip,
+            azi: actualSurveys[actualSurveys.length - 1].azi
+         }];
+         i = 0;
 
-            //sort and return the result
-            projected.sort((a, b) => a.depth - b.depth);
-            return projected;
-      }
+         //loop through checking that the depth is still less than the end of hole value projecting forward by the median depth change each iteration
+         while (projected[i].depth < eoh && projected[i].depth + medianDepth < eoh) {
+
+            projected = [
+               ...projected,
+               {
+                  depth: projected[i].depth + medianDepth,
+                  dip: projected[i].dip + projDip,
+                  azi: projected[i].azi + projAzi,
+               }
+            ]
+            i++;
+         }
+
+         //if the loop stopped before the eoh (it almost always will) add another projection at the eoh depth.
+         if (i > 0 && projected[i].depth < eoh && projected[i].depth + medianDepth >= eoh) {
+            projected = [
+               ...projected,
+               {
+                  depth: eoh,
+                  dip: projected[i].dip + projDip,
+                  azi: projected[i].azi + projAzi,
+               }
+            ]
+         }
+
+         //sort and return the result
+         projected.sort((a, b) => a.depth - b.depth);
+         return projected;
    },
    targetBox: function (target, lastSurvey) {
       var azi = lastSurvey.azi;
@@ -122,7 +144,7 @@ module.exports = {
       //retun the values of the target box
       let x = r * Math.cos(azi * Math.PI / 180)
       let y = r * Math.sin(azi * Math.PI / 180)
-      debugger;
+
       return {
          x: [target.x + x, target.x + x, target.x - x, target.x - x, target.x + x],
          y: [target.y + y, target.y + y, target.y - y, target.y - y, target.y + y],
