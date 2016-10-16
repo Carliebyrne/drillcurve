@@ -40,7 +40,7 @@ var AppOptions = React.createClass({
 
                <fieldset className="form-gap">
                   <legend>Projection Method</legend>
-                  <p>This is the default method used to generate the points projected past the actual surveys.</p>
+                  <p>This defines method used to generate the points projected past the actual surveys. Exponential Smoothing is the recommended option.</p>
                   <label htmlFor="lastValue" className="pure-radio">
                      <input id="lastValue" type="radio" name="projection" value="lastValue" checked={options.projectionMethod.lastValue} onClick={() => {dispatch(actions.changeProjectionMethod('lastValue'))}} readOnly/>
                      Last Value
@@ -52,6 +52,23 @@ var AppOptions = React.createClass({
                   <label htmlFor="expSmooth" className="pure-radio">
                      <input id="expSmooth" type="radio" name="projection" value="expSmooth" checked={options.projectionMethod.expSmooth} onClick={() => {dispatch(actions.changeProjectionMethod('expSmooth'))}} readOnly/>
                      Exponential Smoothing
+                  </label>
+               </fieldset>
+
+               <fieldset className="form-gap">
+                  <legend>Dip Convention</legend>
+                  <p>This is conventions used for the dip/inclination. Either positive up, positive down or inclination can be selected. Both positive up and positive down are values between -90 and 90 degrees. Inclination, by industry standard is a value between 0 and 180, where 0 degrees as downward pointing in the vertical and 90 degrees a horizontal hole. An up hole will therefore be between 90 and 180 degrees.</p>
+                  <label htmlFor="posUp" className="pure-radio">
+                     <input id="posUp" type="radio" name="dip-convention" value="posUp" checked={options.dipConvention.posUp} onClick={() => {}} readOnly/>
+                     Positive Up
+                  </label>
+                  <label htmlFor="posDown" className="pure-radio">
+                     <input id="posDown" type="radio" name="dip-convention" value="posDown" checked={options.dipConvention.posDown} onClick={() => {}} readOnly/>
+                     Positive Down
+                  </label>
+                  <label htmlFor="inclination" className="pure-radio">
+                     <input id="inclination" type="radio" name="dip-convention" value="inclination" checked={options.dipConvention.inclination} onClick={() => {}} readOnly/>
+                     Inclination
                   </label>
                </fieldset>
             </form>
