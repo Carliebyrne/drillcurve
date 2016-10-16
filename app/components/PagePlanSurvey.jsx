@@ -8,14 +8,18 @@ var actions = require('actions');
 
 export var PagePlanSurvey = React.createClass({
   componentWillUnmount: function () {
-    var {dispatch, drillholes} = this.props;
+    var {dispatch, drillholes, options} = this.props;
     var drillhole = drillholes.filter((el) => {
       if (el.active === true) {
         return true;
       }
     })[0];
 
-    var planPoints = dataAPI.simple(drillhole.collar, drillhole.planSurvey);
+    if (options.surveyMethod.tangent === true) {var surveyMethod = 'tangent'}
+    else if (options.surveyMethod.avgAngle === true) {var surveyMethod = 'avgAngle'}
+    else {var surveyMethod = 'minCurve'};
+
+    var planPoints = dataAPI.desurvey(surveyMethod, drillhole.collar, drillhole.planSurvey);
 
     if (drillhole.target.radius !== 0 && drillhole.planSurvey.length > 1) {
       var lastPoint = planPoints.x.length - 1;
@@ -91,7 +95,8 @@ export var PagePlanSurvey = React.createClass({
 export default connect(
   (state) => {
     return {
-      drillholes: state.drillholes
+      drillholes: state.drillholes,
+      options: state.options
     }
   }
 )(PagePlanSurvey);

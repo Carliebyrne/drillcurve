@@ -1,32 +1,69 @@
 module.exports = {
-  minimumCurvature: function (collar, surveys) {
-    return [];
-  },
-  tangential: function (collar, surveys) {
-    return [];
-  },
-  simple: function (collar, surveys) {
-    // Sort the array by depth
+   desurvey: function (method, collar, surveys) {
+      // Sort the array by depth
       surveys.sort((a, b) => {return a.depth-b.depth});
 
-    // define two new object with arrays the same length as the survey array
+      // define two new object with arrays the same length as the survey array
       var points = {
          x: new Array(surveys.length),
          y: new Array(surveys.length),
          z: new Array(surveys.length)
       };
 
-      //loop through the array calculating the using the last survey to calculate the magnitude fo rx, y, and z and adding to the last point.
-      for (var i = 0; i < surveys.length; i++) {
-         if (i === 0) {
-            points.x[0] = collar.x;
-            points.y[0] = collar.y,
-            points.z[0] = collar.z
-         } else {
-            points.x[i] = points.x[i - 1] + (surveys[i].depth - surveys[i-1].depth) * Math.cos(surveys[i].azi * Math.PI / 180);
-            points.y[i] = points.y[i - 1] + (surveys[i].depth - surveys[i-1].depth) * Math.sin(surveys[i].azi * Math.PI / 180);
-            points.z[i] = points.z[i - 1] + (surveys[i].depth - surveys[i-1].depth) * Math.sin(surveys[i].dip * Math.PI / 180);
-         }
+      switch (method) {
+         case 'tangent':
+            //loop through the array calculating the using the last survey to calculate the magnitude fo rx, y, and z and adding to the last point.
+            for (var i = 0; i < surveys.length; i++) {
+               if (i === 0) {
+                  points.x[0] = collar.x;
+                  points.y[0] = collar.y,
+                  points.z[0] = collar.z
+               } else {
+                  let itwo = (90 + surveys[i].dip) * Math.PI / 180;
+                  let atwo = surveys[i].azi * Math.PI / 180;
+                  points.x[i] = points.x[i - 1] + (surveys[i].depth - surveys[i-1].depth) * Math.sin(itwo) * Math.sin(atwo);
+                  points.y[i] = points.y[i - 1] + (surveys[i].depth - surveys[i-1].depth) * Math.sin(itwo) * Math.cos(atwo);
+                  points.z[i] = points.z[i - 1] + (surveys[i].depth - surveys[i-1].depth) * -Math.cos(itwo);
+               }
+            }
+            break;
+         case 'avgAngle':
+            for (var i = 0; i < surveys.length; i++) {
+               if (i === 0) {
+                  points.x[0] = collar.x;
+                  points.y[0] = collar.y,
+                  points.z[0] = collar.z
+               } else {
+                  let ione = 90 + surveys[i - 1].dip;
+                  let itwo = 90 + surveys[i].dip;
+                  let avgDip = (ione + itwo) / 2 * Math.PI / 180;
+                  let avgAzi = (surveys[i].azi + surveys[i - 1].azi) / 2 * Math.PI / 180;
+                  points.x[i] = points.x[i - 1] + (surveys[i].depth - surveys[i-1].depth) * Math.sin(avgDip) * Math.sin(avgAzi);
+                  points.y[i] = points.y[i - 1] + (surveys[i].depth - surveys[i-1].depth) * Math.sin(avgDip) * Math.cos(avgAzi);
+                  points.z[i] = points.z[i - 1] + (surveys[i].depth - surveys[i-1].depth) * -Math.cos(avgDip);
+               }
+            }
+            break;
+         case 'minCurve':
+            for (var i = 0; i < surveys.length; i++) {
+               if (i === 0) {
+                  points.x[0] = collar.x;
+                  points.y[0] = collar.y,
+                  points.z[0] = collar.z
+               } else {
+                  let itwo = (90 + surveys[i].dip) * Math.PI / 180;
+                  let atwo = (surveys[i].azi) * Math.PI / 180;
+                  let ione = (90 + surveys[i - 1].dip) * Math.PI / 180;
+                  let aone = surveys[i - 1].azi * Math.PI / 180;
+                  let dogleg = Math.acos(Math.cos(itwo - ione) - Math.sin(ione) * Math.sin(itwo) * (1 - Math.cos(atwo - aone)));
+                  if (dogleg < 0.25) {dogleg = 1};
+                  let rf = 2 / dogleg * Math.tan(dogleg / 2);
+                  points.x[i] = points.x[i - 1] + (surveys[i].depth - surveys[i-1].depth) / 2 * (Math.sin(ione) * Math.sin(aone) + Math.sin(itwo) * Math.sin(atwo)) * rf;
+                  points.y[i] = points.y[i - 1] + (surveys[i].depth - surveys[i-1].depth) / 2 * (Math.sin(ione) * Math.cos(aone) + Math.sin(itwo) * Math.cos(atwo)) * rf;
+                  points.z[i] = points.z[i - 1] + (surveys[i].depth - surveys[i-1].depth) / 2 * -(Math.cos(ione) + Math.cos(itwo)) * rf;
+               }
+            }
+            break;
       }
       return points;
    },
