@@ -183,7 +183,6 @@ module.exports = {
       //retun the values of the target box
       let x = r * Math.sin(azi * Math.PI / 180)
       let y = r * Math.cos(azi * Math.PI / 180)
-      debugger;
 
       return {
          x: [target.x + x, target.x + x, target.x - x, target.x - x, target.x + x],
