@@ -34,7 +34,8 @@ module.exports = {
       plotly: 'app/externals/plotly.jsx',
       actions: 'app/actions/actions.jsx',
       reducers: 'app/reducers/reducers.jsx',
-      configureStore: 'app/store/configureStore.jsx'
+      configureStore: 'app/store/configureStore.jsx',
+      foundationIcons: '../node_modules/foundation-icons/foundation-icons.css'
     },
     extensions: ['', '.js', '.jsx']
   },

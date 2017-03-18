@@ -15,12 +15,13 @@ export var PlotInfo = React.createClass({
         return true;
       }
     })[0];
+    var lastSurvey = drillhole.actualSurvey[drillhole.actualSurvey.length - 1];
 
     return (
       <div className="plot-info">
         <h3>Drillhole Information</h3>
         <p>The drillhole is {drillhole.mFromTarget}m from the target.</p>
-        <p>Last survey had a dip of INSERTHERE and an azimuth of INSERTHERE</p>
+        <p>Last survey had a dip of {lastSurvey.dip} and an azimuth of {lastSurvey.azi}</p>
       </div>
     )
   }
