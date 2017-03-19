@@ -13,19 +13,19 @@ The sidebar shows the user, company, options menu and the list of drillholes. Th
 
 The top menu allows the user to switch between viewing the drillhole in 3D, and three separate data entry pages: Actual, Plan, and Collar. It also contains the checkbox where the user can mark the drillhole as complete.
 
-![Drillcurve Drill Tracking](https://github.com/jacobcarvell/drillcurve/tree/demo/documentation/images/Trace.PNG)
+![Drillcurve Drill Tracking](documentation/images/Trace.PNG)
 
 The live demo opens straight into the app on the default trace page. This page shows a 3D plot of the drillhole, with its planned path, its actual path projected to the target depth. As well as some basic information below the trace. Note that this information is planned to be filled out and given some styling. This page is where the drillhole can be reviewed in detail, and decisions can be easily made based on how the hole is currently tracking. The graph can be panned, rotated, zoomed, screenshots taken, or exported to plotly.
 
-![Drillcurve Actual Data](https://github.com/jacobcarvell/drillcurve/tree/demo/documentation/images/Actual.PNG)
+![Drillcurve Actual Data](documentation/images/Actual.PNG)
 
 The actual page is a simple data entry page that allows either the driller or geologist to enter the latest drilling information. In the future this will also optionally allow the user to input the barrel configuration information as well.
 
-![Drillcurve Plan Data](https://github.com/jacobcarvell/drillcurve/tree/demo/documentation/images/Plan.PNG)
+![Drillcurve Plan Data](documentation/images/Plan.PNG)
 
 The plan page has two functions that allow the geologist to enter the planned deviation of the drillhole. A basic single depth data entry form. As well as the option to enter a series of values. Often the geologist may expect a certain build and turn rate for much of a hole. This function allows the user to enter a series of values with a given build and turn.
 
-![Drillcurve Collar Data](https://github.com/jacobcarvell/drillcurve/tree/demo/documentation/images/Collar.PNG)
+![Drillcurve Collar Data](documentation/images/Collar.PNG)
 
 The final page is the collar page. This is where the collar point is entered and the target box information. Note if the target box is left as 0 for x, y, and z then the target will just be the end point of the planned drillhole. If the target box size is 0 then no target box will be drawn.
 
