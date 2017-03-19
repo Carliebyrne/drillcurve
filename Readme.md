@@ -1,16 +1,16 @@
 # Drillcurve
-### A drillhole tracking web app
+## A drillhole tracking web app
+
+### Why build a drill hole tracking app?
+This app aims to solve the problem in mining whereby the drilling team need to be able to quickly upload information on the current direction of a drillhole. The driller and the geologist can then immediately review the actual drill path against the plan and make any adjustments to drill technique or even stop the hole if necessary. Down time is very costly and this app aims to save hundreds of thousands in downtime, and the cost of redrilling holes by updating the methods of tracking drillholes into the 21st century.
 
 Check it out [here](https://drillcurve.herokuapp.com).
 Note if you aren't familiar with heroku, on the free tier if the app hasn't been open in a while the instance will need a few minutes to reactivate, so don't take it as a really long load time for the app!
 
-### Why?
-This app aims to solve the problem in mining whereby the drilling team need to be able to quickly upload information on the current direction of a drillhole. The driller and the geologist can then immediately review the drill path against the plan
-
-### What
+### What is it made of?
 The app is built using react/react, sass, and a heap of other useful packages. I have used a couple of PureCSS elements as well as font-awesome. All of the processing for calculating the downhole points for each drillhole is done in the front end to allow for the app to work offline as well (I had wanted to convert it to an electron app at some stage).
 
-### How
+### How do I use it?
 The app has three basic components to the interface: the sidebar, the top menu, and the main page below.
 The sidebar shows the user, company, options menu and the list of drillholes. This is mostly used to select the drillhole to view or add data to. The options menu is accessed by clicking on the three vertical dots. New drillholes can be created by clicking on the *Add New Drillhole* button. Note this automatically switches to the collar page upon entering a new drillhole. The checkbox at the bottom enables switching between viewing all the drillholes and only viewing the uncompleted drillholes.
 
@@ -32,7 +32,7 @@ The plan page has two functions that allow the geologist to enter the planned de
 
 The final page is the collar page. This is where the collar point is entered and the target box information. Note if the target box is left as 0 for x, y, and z then the target will just be the end point of the planned drillhole. If the target box size is 0 then no target box will be drawn.
 
-### Future
+### What is the Future of the app?
 The full app is still in alpha development and uses a firebase backend. It includes a login/user system, data syncronisation, and multiple users per company.
 Other features that I would like to implement are:
 * Add barrel information to data entry page.
