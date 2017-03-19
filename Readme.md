@@ -1,5 +1,8 @@
 # Drillcurve
-## A drillhole tracking web app
+### A drillhole tracking web app
+
+Check it out [here](https://drillcurve.herokuapp.com).
+Note if you aren't familiar with heroku, on the free tier if the app hasn't been open in a while the instance will need a few minutes to reactivate, so don't take it as a really long load time for the app!
 
 ### Why?
 This app aims to solve the problem in mining whereby the drilling team need to be able to quickly upload information on the current direction of a drillhole. The driller and the geologist can then immediately review the drill path against the plan
